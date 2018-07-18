@@ -12,6 +12,22 @@
 
 ActiveRecord::Schema.define(version: 20180718171900) do
 
+  create_table "answers", force: :cascade do |t|
+    t.text "content"
+    t.integer "user_id"
+    t.integer "question_id"
+    t.integer "upvotes_count", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "question_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "questions", force: :cascade do |t|
     t.string "topic"
     t.text "content"
@@ -19,6 +35,14 @@ ActiveRecord::Schema.define(version: 20180718171900) do
     t.integer "answers_count", default: 0
     t.integer "upvotes_count", default: 0
     t.integer "favorites_count", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "upvotes", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "question_id"
+    t.integer "answer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
