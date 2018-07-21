@@ -50,6 +50,16 @@ namespace :dev  do
   
   task fake_answers: :environment do
     # 未來 answer 假資料做在這裡
+    Answer.destroy_all
+    Question.all.each do |question|
+      3.times do |i|
+        question.answers.create!(
+          content: FFaker::Lorem::sentence(50),
+          user_id: User.all.ids.sample
+          )
+      end
+    end
+    puts "Have created #{Answer.count} answers."
   end
   
   task fake_favorites: :environment do

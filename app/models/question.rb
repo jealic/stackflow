@@ -18,5 +18,4 @@ class Question < ApplicationRecord
   has_many :answers
   has_many :favorites, dependent: :destroy
   has_many :upvotes
-  has_many :upvotes
 end
