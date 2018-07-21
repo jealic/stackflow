@@ -42,4 +42,10 @@ class User < ApplicationRecord
   # 一個 user 可以有多個回答過的問題
 
   has_many :answers, dependent: :restrict_with_error
+  has_many :favorites, dependent: :destroy #個人所有的收藏
+  has_many :favorited_questions, through: :favorites, source: :question #個人收藏的『餐廳』
+
+  has_many :upvotes, dependent: :destory #個人所有的『推』
+  has_many :upvoted_questions, through: :upvotes, source: :question #個人推的問題
+  has_many :upvoted_answers, through: :upvotes, source: :answer #個人推的答案
 end
