@@ -1,1 +1,30 @@
-<h1>這是 questions#index 頁面</h1>
+<div class="conteiner">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="question-remind">你需要註冊會員才能提問</div>
+      <div class="col-md-7">
+        <!----問題列表---->
+        <h3>Top Questions：</h3>
+        <% @questions.each do |question| %>
+          <div class="question-list col-md-12">
+            <div class="col-md-3">
+              
+            </div>
+            <div class="col-md-9">
+              <h4><strong><%= question.topic %></strong><h4>
+              <h5><%= truncate(question.content,length:100) %></h5>
+              <p>   
+                Ask <%= time_ago_in_words(question.created_at) %> ago
+                -by <%= question.user.name %>
+              </p>
+            </div> 
+          </div>
+        <% end %>
+      </div>
+
+      <div class="col-md-4">
+        
+      </div>
+    </div>
+  </div>
+</div>
