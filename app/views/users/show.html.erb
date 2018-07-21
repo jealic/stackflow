@@ -1,53 +1,52 @@
-<div class="container">
-  <div class="row">
-    <h1>This is <%= @user.name %>'s Personal Page</h1>
-    <hr>
-      <div class="col-md-12">
-        <div class="col-md-4">
-          <%= image_tag ("avatar.png"), alt: 'avatar' %>
-        </div>
-        <div class="col-md-8">
-          <ul>
-            <li><strong>Email:</strong> <%= @user.email %></li>
-            <li><p><strong>Introduction:</strong> <%= @user.intro %></p></li>
-            <li><strong>Company:</strong> <%= @user.company %></li>
-            <li><strong>Job title:</strong> <%= @user.title %></li>
-            <li><strong>Website:</strong> <%= @user.website %></li>
-            <li><strong>Twitter:</strong> <%= @user.twitter %></li>
-            <li><strong>Github:</strong> <%= @user.github %></li>
-            <li><h5>Has X upvoted Q, X befavorited Q</h5></li>
-          </ul>
-        </div>
-      </div>
-      
-      <div class="clearfix"></div>
-      <hr>
-    </div>
+<h1>This is <%= @user.name %>'s Personal Page</h1>
+<hr>
+  <div class="col-md-12">
     <div class="col-md-4">
-      <div class="panel panel-default">
-        <div class="panel-heading">Posted Questions</div>
-        <div class="panel-body">
-          Question list
-        </div>
+      <%= image_tag ("avatar.png"), alt: 'avatar' %>
+    </div>
+    <div class="col-md-8">
+      <ul>
+        <li><strong>Email:</strong> <%= @user.email %></li>
+        <li><p><strong>Introduction:</strong> <%= @user.intro %></p></li>
+        <li><strong>Company:</strong> <%= @user.company %></li>
+        <li><strong>Job title:</strong> <%= @user.title %></li>
+        <li><strong>Website:</strong> <%= @user.website %></li>
+        <li><strong>Twitter:</strong> <%= @user.twitter %></li>
+        <li><strong>Github:</strong> <%= @user.github %></li>
+        <li><h5>Has X upvoted Q, X befavorited Q</h5></li>
+      </ul>
+      <div class="col-md-8">
+        <% if @user.email == current_user.email %>
+          <%= link_to 'Edit Info', edit_user_path(@user), class: 'btn btn-info' %>
+        <% end %>
       </div>
     </div>
-    <div class="col-md-4">
-      <div class="panel panel-default">
-        <div class="panel-heading">Answered Questions</div>
-        <div class="panel-body">
-          Question list
-        </div>
-      </div>
+  </div>
+  
+  <div class="clearfix"></div>
+  <hr>
+</div>
+<div class="col-md-4">
+  <div class="panel panel-default">
+    <div class="panel-heading">Posted Questions</div>
+    <div class="panel-body">
+      Question list
     </div>
-    <div class="col-md-4">
-      <div class="panel panel-default">
-        <div class="panel-heading">Favorited Questions</div>
-        <div class="panel-body">
-          Question list
-        </div>
-      </div>
+  </div>
+</div>
+<div class="col-md-4">
+  <div class="panel panel-default">
+    <div class="panel-heading">Answered Questions</div>
+    <div class="panel-body">
+      Question list
     </div>
-    
-
+  </div>
+</div>
+<div class="col-md-4">
+  <div class="panel panel-default">
+    <div class="panel-heading">Favorited Questions</div>
+    <div class="panel-body">
+      Question list
+    </div>
   </div>
 </div>
