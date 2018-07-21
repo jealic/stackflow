@@ -6,4 +6,8 @@ Rails.application.routes.draw do
 
   resources :users
   
+  namespace :logger do
+    root 'questions#index'
+    resources :questions
+  end
 end
