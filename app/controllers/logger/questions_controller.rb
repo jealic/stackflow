@@ -1,6 +1,7 @@
 class Logger::QuestionsController < Logger::BaseController
   def index
     @question = Question.new
+    @questions = Question.order(created_at: :desc)
   end
 
   def create
@@ -18,6 +19,6 @@ class Logger::QuestionsController < Logger::BaseController
 
   private
   def question_params
-    params.require(:question).permit(:title,:content)
+    params.require(:question).permit(:topic,:content)
   end
 end

@@ -1,1 +1,55 @@
-<h1>這是權限頁面的首頁</h1>
+<style>
+  .question-submit{
+    float: right;
+  }
+</style>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <% if @question.errors.any? %>
+        <h2>We have some errors here !</h2>
+        <ul>
+          <% @question.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      <% end %>
+
+      <div class="col-md-7">
+        <!----問題表格---->
+        <%= form_for [:logger,@question] do |f| %>
+          <div class="form-group">
+            <%= f.label :topic, "Title" %>
+            <%= f.text_field :topic, placeholder:"title",class:"form-control" %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :content, "Content" %>
+            <%= f.text_area :content, placeholder:"What's on your mind ?", class:"form-control", rows:"5"%>
+          </div>
+          
+          <div class="question-submit">
+            <%= f.submit "Ask Question",class:"btn btn-success" %>
+          </div>
+        <% end %>
+
+        <!----分行---->
+        <div class="clearfix"></div>
+        <hr>
+
+        <!----問題列表---->
+        <div class="question-list">
+          <% @questions.each do |question| %>
+            <%= question.topic %>
+            <%= simple_format(truncate(question.content,length:100)) %>
+            <%= question.user.name %> 
+          <% end %>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        
+      </div>
+    </div>
+  </div>
+</div>
