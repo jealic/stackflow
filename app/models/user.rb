@@ -35,6 +35,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   mount_uploader :image, AvatarUploader #先打此行才 rails g controller users 會出現錯誤
+  validates_presence_of :name, :email
   has_many :questions, dependent: :destroy
   #一個 user 可以問好多個問題
   has_many :questions, through: :answers
