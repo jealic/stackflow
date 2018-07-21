@@ -35,6 +35,17 @@ namespace :dev  do
   
   task fake_questions: :environment do
     # 未來 question 假資料做在這裡
+    Question.destroy_all
+    100.times do |q|
+      question = Question.create!(
+        topic: "Q: " + FFaker::Lorem::sentence + "?",
+        content: FFaker::Lorem::sentence(50),
+        user_id: User.all.ids.sample
+      )
+      puts question.topic
+    end
+    puts "The above are the questions."
+    puts "Have created #{Question.count} questions."
   end
   
   task fake_answers: :environment do
