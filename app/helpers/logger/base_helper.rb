@@ -1,0 +1,2 @@
+module Logger::BaseHelper
+end
