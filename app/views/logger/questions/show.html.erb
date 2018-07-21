@@ -33,7 +33,7 @@
             </div>  
 
             <div class="panel-body">
-              <h5><%= answer.content %></h5>
+              <h5><%= simple_format(answer.content) %></h5>
               <span>
                 <em><%= time_ago_in_words(answer.created_at)%> ago - </em>
                 <% if current_user==answer.user %> 
