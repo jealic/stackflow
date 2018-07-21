@@ -1,1 +1,53 @@
 <h1>Edit Info</h1>
+<hr>
+<%= form_for @user do |f| %>
+  <div class="col-md-6">
+    <div class="form-group">
+      <%= f.label :name, "Name" %>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :email, "Email" %>
+      <%= f.email_field :email, class: "form-control" %>
+    </div>
+        <div class="form-group">
+      <%= f.label :company, "Company" %>
+      <%= f.text_field :company, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :title, "Job Title" %>
+      <%= f.text_field :title, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="form-group">
+      <%= f.label :website, "Website" %>
+      <%= f.text_field :website, class: "form-control" %> <!--之後要改 url_field -->
+    </div>
+    <div class="form-group">
+      <%= f.label :twitter, "Twitter" %>
+      <%= f.text_field :twitter, class: "form-control" %> <!--之後要改 url_field -->
+    </div>
+    <div class="form-group">
+      <%= f.label :github, "Github" %>
+      <%= f.text_field :github, class: "form-control" %> <!--之後要改 url_field -->
+    </div>
+  </div>
+
+  <div class="col-md-12">
+    <div class="form-group">
+      <%= f.label :intro, "Introduction" %>
+      <%= f.text_area :intro, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :image, "Upload Photo" %>
+      <%= image_tag @user.image, width: '250px' if @user.image? %>
+      <%= f.file_field :image %>
+    </div>
+    <div class="form-group">
+      <%= f.submit "Update", class: "btn btn-primary" %>
+      <%= link_to "Cancel", user_path(@user), class: "btn btn-default" %>
+    </div>
+  </div>
+<% end %>
