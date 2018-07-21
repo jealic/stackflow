@@ -1,0 +1,2 @@
+module Logger::QuestionsHelper
+end
