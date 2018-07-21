@@ -13,7 +13,12 @@
     <%= render partial: "layouts/navbar" %>
     <%= render partial: "layouts/notice" %>
     <%= render partial: "layouts/alert" %>
-
-    <%= yield %>
+    
+    <div class="container">
+      <div class="row">
+        <%= yield %>  
+      </div>
+    </div>
+    
   </body>
 </html>

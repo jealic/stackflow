@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row">
+    
+    <h1>User List</h1>
+
+    <% @users.each do |user| %>
+      <ul>
+        <li><%= link_to user.name, user_path(user) %></li>
+      </ul>
+    <% end %>
+
+    
+  </div>
+</div>

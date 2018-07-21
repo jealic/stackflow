@@ -14,4 +14,9 @@
 #
 
 class Question < ApplicationRecord
+  belongs_to :user, counter_cache: true # user 問了多少個問題
+  has_many :answers
+  has_many :favorites, dependent: :destroy
+  has_many :upvotes
+  has_many :upvotes
 end

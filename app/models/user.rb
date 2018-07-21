@@ -33,4 +33,12 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  mount_uploader :image, AvatarUploader #先打此行才 rails g controller users 會出現錯誤
+  has_many :questions, dependent: :destroy
+  #一個 user 可以問好多個問題
+  has_many :questions, through: :answers
+  # 一個 user 可以有多個回答過的問題
+
+  has_many :answers, dependent: :restrict_with_error
 end
