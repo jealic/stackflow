@@ -64,6 +64,17 @@ namespace :dev  do
   
   task fake_favorites: :environment do
     # 未來 favorite 假資料做在這裡
+    #Favorite.destroy_all
+    #User.all.each do |user|
+    #  5.times do |i|
+    #    user.favorites.create!(
+    #      question_id: Question.all.ids.sample
+    #      )
+    #  end
+    #end
+    
+    #puts "Have created #{Favorite.count} favorites for users."
+    ###### 無法寫入favorites_count 而不能進行 fake #######
   end
 
   # 快速一個指令重建
