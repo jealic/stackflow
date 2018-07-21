@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   namespace :logger do
     root 'questions#index'
     resources :questions do
-      resources :answers,only: [:index,:create]
+      resources :answers,only: [:create,:destroy]
     end
   end
 end

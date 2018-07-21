@@ -18,6 +18,8 @@ class Logger::QuestionsController < Logger::BaseController
 
   def show
     @question = Question.find(params[:id])
+    @answer = Answer.new
+    @answers = @question.answers.order(updated_at: :asc)
   end
 
 
