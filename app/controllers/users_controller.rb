@@ -6,6 +6,10 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @posted_questions = @user.questions.order(created_at: :desc).limit(10)
+    @answers = @user.answers.order(created_at: :desc).limit(10)
+    @favorited_questions = @user.favorites.order(created_at: :desc).limit(10)
+    
   end
 
   def edit

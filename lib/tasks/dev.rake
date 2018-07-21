@@ -35,14 +35,46 @@ namespace :dev  do
   
   task fake_questions: :environment do
     # 未來 question 假資料做在這裡
+    Question.destroy_all
+    100.times do |q|
+      question = Question.create!(
+        topic: "Q: " + FFaker::Lorem::sentence + "?",
+        content: FFaker::Lorem::sentence(50),
+        user_id: User.all.ids.sample
+      )
+      puts question.topic
+    end
+    puts "The above are the questions."
+    puts "Have created #{Question.count} questions."
   end
   
   task fake_answers: :environment do
     # 未來 answer 假資料做在這裡
+    Answer.destroy_all
+    Question.all.each do |question|
+      3.times do |i|
+        question.answers.create!(
+          content: FFaker::Lorem::sentence(50),
+          user_id: User.all.ids.sample
+          )
+      end
+    end
+    puts "Have created #{Answer.count} answers."
   end
   
   task fake_favorites: :environment do
     # 未來 favorite 假資料做在這裡
+    #Favorite.destroy_all
+    #User.all.each do |user|
+    #  5.times do |i|
+    #    user.favorites.create!(
+    #      question_id: Question.all.ids.sample
+    #      )
+    #  end
+    #end
+    
+    #puts "Have created #{Favorite.count} favorites for users."
+    ###### 無法寫入favorites_count 而不能進行 fake #######
   end
 
   # 快速一個指令重建

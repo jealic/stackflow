@@ -17,7 +17,13 @@
         <li><strong>Website:</strong> <%= @user.website %></li>
         <li><strong>Twitter:</strong> <%= @user.twitter %></li>
         <li><strong>Github:</strong> <%= @user.github %></li>
-        <li><h5>Has X upvoted Q, X befavorited Q</h5></li>
+        <li><h5>
+          <%= @user.questions.count %> posted questions, 
+          answered <%= @user.answers.count %> questions, 
+          <%= @user.favorites.count %> favorite questions,
+          <span style="color: red">total XX upvotes.</span>
+
+        </h5></li>
       </ul>
       <div class="col-md-8">
         <% if @user.email == current_user.email %>
@@ -32,25 +38,36 @@
 </div>
 <div class="col-md-4">
   <div class="panel panel-default">
-    <div class="panel-heading">Posted Questions</div>
-    <div class="panel-body">
-      Question list
+    <div class="panel-heading">Most Popular Posts</div>
+    <div class="list-group">
+      <% @posted_questions.each do |question| %>
+        <li class = "list-group-item">
+          <span class="badge", alt="upvotes count"><%= question.upvotes.count %></span>
+          <%= link_to truncate(question.topic, length: 40) %>
+        </li>
+      <% end %>
     </div>
   </div>
 </div>
 <div class="col-md-4">
   <div class="panel panel-default">
-    <div class="panel-heading">Answered Questions</div>
-    <div class="panel-body">
-      Question list
+    <div class="panel-heading">Most Favored Answers</div>
+    <div class="list-group">
+      <% @answers.each do |answer| %>
+        <li class="list-group-item">
+          <span class="badge", alt="Upvotes Count"><%= answer.upvotes.count %></span>
+          <%= link_to truncate(answer.question.topic, length:40) %>
+        <% end %>
+      </li>
     </div>
   </div>
 </div>
 <div class="col-md-4">
   <div class="panel panel-default">
-    <div class="panel-heading">Favorited Questions</div>
+    <div class="panel-heading">Recent Favorites</div>
     <div class="panel-body">
       Question list
     </div>
   </div>
 </div>
+
