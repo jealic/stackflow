@@ -16,8 +16,21 @@
         <div class="clearfix"></div>
         <hr>
         <!----回答留言---->
+        <h4><strong>Answers:</strong></h4>
+        <% @answers.each do |answer| %>
+          <div class="panel panel-success">
+            <div class="panel-heading">
+              <h3 class="panel-title"><%= answer.user.name %></h3>
+            </div>  
 
-        
+            <div class="panel-body">
+              <h5><%= simple_format(answer.content) %></h5>
+              <span>
+                <em><%= time_ago_in_words(answer.created_at)%> ago </em>
+              </span>
+            </div>
+          </div>
+        <% end %>        
       </div> 
       <div class="col-md-5">
         
