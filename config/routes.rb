@@ -8,5 +8,6 @@ Rails.application.routes.draw do
   
   namespace :logger do
     root 'questions#index'
+    resources :questions
   end
 end
