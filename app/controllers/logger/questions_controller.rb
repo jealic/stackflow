@@ -22,6 +22,19 @@ class Logger::QuestionsController < Logger::BaseController
     @answers = @question.answers.order(updated_at: :asc)
   end
 
+  def favorite
+    @question = Question.find(params[:id])
+    Favorite.create(user:current_user,question:@question)
+    redirect_back(fallback_location: logger_root_path)  # 導回上一頁
+  end
+
+  def unfavorite
+    @question = Question.find(params[:id])
+    @unfavorite = Favorite.where(user:current_user,question:@question).first
+    @unfavorite.destroy
+    redirect_back(fallback_location: logger_root_path)  # 導回上一頁
+  end
+
 
   private
   def question_params

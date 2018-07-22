@@ -7,6 +7,7 @@
       <div class="col-md-7">
         <!----瀏覽問題---->    
         <h4><strong>Question:</strong></h4>
+        <%= render partial:"shared/favorite",locals:{question:@question} %>
         <h5><%= simple_format(@question.content) %></h5>
         <span>
           <em>Ask <%= time_ago_in_words(@question.created_at) %> ago</em>
@@ -43,6 +44,7 @@
             </div>
           </div>
         <% end %>
+        <%= link_to "Back",logger_root_path,class:"btn btn-primary",style:"margin-bottom:20px;"  %>
       </div> 
       <div class="col-md-5">
         
