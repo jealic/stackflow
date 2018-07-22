@@ -37,15 +37,7 @@
         <% @questions.each do |question| %>
           <div class="question-list col-md-12">
             <div class="col-md-3">
-              <% unless question.is_favorited?(current_user) %>
-                <%= link_to favorite_logger_question_path(question) ,method: :post do%>
-                  <buttom class="btn btn-warning"><span>Favorite ( <%= question.favorites.count %> )</span></buttom>
-                <% end %>
-              <% else %>
-                <%= link_to unfavorite_logger_question_path(question) ,method: :post do %>
-                  <buttom class="btn btn-warning"><span>Favorite ( <%= question.favorites.count %> )</span></buttom>
-                <% end %>
-              <% end %>
+              <%= render partial:"shared/favorite",locals:{question:question} %> 
             </div>
             <div class="col-md-9">
               <h4><strong><%= link_to question.topic,logger_question_path(question) %></strong><h4>
