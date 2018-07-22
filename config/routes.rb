@@ -14,11 +14,12 @@ Rails.application.routes.draw do
         post :upvote
         post :downvote
       end
-      resources :answers,only: [:create,:destroy] do
-        member do
-          post :upvote
-          post :downvote
-        end
+      resources :answers, only: [:create, :destroy]
+    end
+    resources :answers do
+      member do
+        post :upvote
+        post :downvote
       end
     end
   end

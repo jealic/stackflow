@@ -12,6 +12,6 @@
 
 class Upvote < ApplicationRecord
   belongs_to :question, optional: true, counter_cache: true
-  belongs_to :answer, optional: true, counter_cache: true
+  belongs_to :answer,   optional: true, counter_cache: true
   belongs_to :user
 end

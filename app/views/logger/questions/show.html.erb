@@ -54,11 +54,11 @@
 
               <div class="float-left">
                 
-                  <%= link_to downvote_logger_question_answer_path(answer), method: :post do %>
+                  <%= link_to downvote_logger_answer_path(answer), method: :post do %>
                     downvote <%= answer.upvotes_count %>
                   <% end %>
                 
-                  <%= link_to upvote_logger_question_answer_path(answer), method: :post do %>
+                  <%= link_to upvote_logger_answer_path(answer), method: :post do %>
                     upvote <%= answer.upvotes_count %>
                   <% end %>
                 
