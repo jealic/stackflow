@@ -1,4 +1,5 @@
 class Logger::AnswersController < Logger::BaseController
+  
   def create
     @question = Question.find(params[:question_id])
     @answer = @question.answers.create(answer_params)
@@ -21,6 +22,20 @@ class Logger::AnswersController < Logger::BaseController
       redirect_to logger_question_path(@question)
     end  
   end 
+
+  def upvote
+    @answer = Answer.find(params[:id])
+    @answer.upvotes.create!(user: current_user)
+    redirect_back(fallback_location: root_path)
+  end
+
+  def downvote
+    @answer = Answer.find(params[:id])
+    upvotes = Upvote.where(answer: @answer, user: current_user)
+    upvotes.destroy_all
+    redirect_back(fallback_location: root_path)
+  end
+
 
   private
   def answer_params

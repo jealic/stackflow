@@ -1,31 +1,42 @@
-<div class="conteiner">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="question-remind">你需要註冊會員才能提問</div>
-      <div class="col-md-7">
-        <!----問題列表---->
-        <h3>Top Questions：</h3>
-        <% @questions.each do |question| %>
-          <div class="question-list col-md-12">
-            <div class="col-md-3">
-              <%= render partial:"shared/favorite",locals:{question:question} %> 
-              <%= render partial:"shared/answer_count",locals:{question:question} %> 
-            </div>
-            <div class="col-md-9">
-              <h4><strong><%= link_to question.topic,question_path(question) %></strong><h4>
-              <h5><%= truncate(question.content,length:100) %></h5>
-              <p>   
-                Ask <%= time_ago_in_words(question.created_at) %> ago
-                -by <%= question.user.name %>
-              </p>
-            </div> 
+<div class="question-remind">你需要註冊會員才能提問</div>
+<div class="col-md-8">
+  <!----問題列表---->
+  <h3>Top Questions：</h3>
+  <% @questions.each do |question| %>
+    <div class="row question-list">
+      <div class="col-md-4 col-sm-4 col-xs-2">
+        <div class="question-data">
+          
+          <div class="data-grid text-center">
+            <div><%= question.upvotes.count %></div>
+            <p>upvotes</p>
           </div>
-        <% end %>
+          <div class="data-grid text-center">
+            <div><%= question.answers.count %></div>
+            <p>answers</p>
+          </div>
+          <div class="data-grid text-center">
+            <div><%= question.favorites.count %></div>
+            <p>favorites</p>
+          </div>
+        </div>   
+
       </div>
 
-      <div class="col-md-4">
-        
-      </div>
+      <%= render partial:"shared/favorite",locals:{question:question} %> 
+
+      <div class="col-md-8 col-sm-8 col-xs-10">
+        <h4><strong><%= link_to question.topic, question_path(question) %></strong><h4>
+        <h5><%= truncate(question.content,length:100) %></h5>
+        <p>   
+          Ask <%= time_ago_in_words(question.created_at) %> ago
+          -by <%= link_to question.user.name,user_path(question.user) %>
+        </p>
+      </div> 
     </div>
-  </div>
+  <% end %>
+</div>
+
+<div class="col-md-4">
+  
 </div>

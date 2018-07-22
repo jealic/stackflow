@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   namespace :logger do
     root 'questions#index'
     resources :questions do
+<<<<<<< HEAD
       resources :answers,only: [:create,:destroy]
 
       member do
@@ -22,7 +23,21 @@ Rails.application.routes.draw do
         post :unfavorite
       end
 
+=======
+      member do
+        post :upvote
+        post :downvote
+      end
+      resources :answers, only: [:create, :destroy]
+    end
+    resources :answers do
+      member do
+        post :upvote
+        post :downvote
+      end
+>>>>>>> 14d8421bfb56077e50767b7a21efd67895f16162
     end
   end
+  
 end
  

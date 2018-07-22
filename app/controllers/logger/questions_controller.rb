@@ -1,4 +1,7 @@
 class Logger::QuestionsController < Logger::BaseController
+  
+  before_action :set_question, only: [:upvote, :downvote, :show]
+
   def index
     @question = Question.new
     @questions = Question.order(created_at: :desc)
@@ -17,11 +20,12 @@ class Logger::QuestionsController < Logger::BaseController
   end
 
   def show
-    @question = Question.find(params[:id])
+    
     @answer = Answer.new
     @answers = @question.answers.order(updated_at: :asc)
   end
 
+<<<<<<< HEAD
   def favorite
     @question = Question.find(params[:id])
     Favorite.create(user:current_user,question:@question)
@@ -33,11 +37,30 @@ class Logger::QuestionsController < Logger::BaseController
     @unfavorite = Favorite.where(user:current_user,question:@question).first
     @unfavorite.destroy
     redirect_back(fallback_location: logger_root_path)  # 導回上一頁
+=======
+  def upvote
+    
+    @question.upvotes.create!(user: current_user)
+    redirect_back(fallback_location: root_path)
+  end
+
+  def downvote
+    
+    upvotes = Upvote.where(question: @question, user: current_user)
+    upvotes.destroy_all
+    redirect_back(fallback_location: root_path)
+    
+>>>>>>> 14d8421bfb56077e50767b7a21efd67895f16162
   end
 
 
   private
+  
   def question_params
     params.require(:question).permit(:topic,:content)
+  end
+
+  def set_question
+    @question = Question.find(params[:id])
   end
 end

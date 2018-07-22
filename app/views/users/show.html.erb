@@ -21,7 +21,7 @@
           <%= @user.questions.count %> posted questions, 
           answered <%= @user.answers.count %> questions, 
           <%= @user.favorites.count %> favorite questions,
-          <span style="color: red">total XX upvotes.</span>
+          <span style="color: red">total <%= @user.upvotes.count %> upvotes.</span>
 
         </h5></li>
       </ul>
@@ -29,6 +29,7 @@
         <% if @user.email == current_user.email %>
           <%= link_to 'Edit Info', edit_user_path(@user), class: 'btn btn-info' %>
         <% end %>
+
       </div>
     </div>
   </div>
@@ -43,7 +44,11 @@
       <% @posted_questions.each do |question| %>
         <li class = "list-group-item">
           <span class="badge", alt="upvotes count"><%= question.upvotes.count %></span>
-          <%= link_to truncate(question.topic, length: 40) %>
+          <% if user_signed_in? %>
+            <%= link_to truncate(question.topic, length: 40), logger_question_path(question) %>
+          <% else %>
+            <%= link_to truncate(question.topic, length: 40), question_path(question) %>
+          <% end %>
         </li>
       <% end %>
     </div>
@@ -56,7 +61,11 @@
       <% @answers.each do |answer| %>
         <li class="list-group-item">
           <span class="badge", alt="Upvotes Count"><%= answer.upvotes.count %></span>
-          <%= link_to truncate(answer.question.topic, length:40) %>
+          <% if user_signed_in? %>
+            <%= link_to truncate(answer.question.topic, length:40), logger_question_path(answer.question) %>
+          <% else %>
+            <%= link_to truncate(answer.question.topic, length: 40), question_path(answer.question) %>
+          <% end %>
         <% end %>
       </li>
     </div>
