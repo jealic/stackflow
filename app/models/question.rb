@@ -25,4 +25,9 @@ class Question < ApplicationRecord
   
   has_many :upvotes, dependent: :destroy
   has_many :upvoted_users, through: :upvotes, source: :user
+
+  
+  def is_upvoted?(user)
+    self.upvoted_users.include?(user)
+  end
 end
