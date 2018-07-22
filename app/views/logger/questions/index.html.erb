@@ -37,7 +37,8 @@
         <% @questions.each do |question| %>
           <div class="question-list col-md-12">
             <div class="col-md-3">
-              
+              <%= link_to "favorite",favorite_logger_question_path(question) ,method: :post %>
+              <%= link_to "unfavorite", unfavorite_logger_question_path(question) ,method: :post %>
             </div>
             <div class="col-md-9">
               <h4><strong><%= link_to question.topic,logger_question_path(question) %></strong><h4>
