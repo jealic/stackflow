@@ -3,9 +3,14 @@ Rails.application.routes.draw do
   devise_for :users
 
   root 'questions#index'
-  resources :questions,only: [:show]
+  resources :questions,only: [:show] 
+  
 
-  resources :users
+  resources :users do
+    member do
+      get :favoriteboard
+    end
+  end
   
   namespace :logger do
     root 'questions#index'
@@ -16,6 +21,7 @@ Rails.application.routes.draw do
         post :favorite
         post :unfavorite
       end
+
     end
   end
 end

@@ -30,6 +30,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def favoriteboard
+    @user = User.find(params[:id])
+    @favorited_restaurants = @user.favorited_questions.order(created_at: :desc)
+  end
+
 
   private
 
