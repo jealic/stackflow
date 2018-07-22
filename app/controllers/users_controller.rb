@@ -9,6 +9,9 @@ class UsersController < ApplicationController
     @posted_questions = @user.questions.order(upvotes_count: :desc).limit(10)
     @answers = @user.answers.order(upvotes_count: :desc).limit(10)
     @favorited_questions = @user.favorites.order(created_at: :desc).limit(10)
+    @question_upvotes = @posted_questions.map(&:upvotes_count).sum
+    @answer_upvotes = @answers.map(&:upvotes_count).sum
+    @total_upvotes = @question_upvotes + @answer_upvotes
     
   end
 
