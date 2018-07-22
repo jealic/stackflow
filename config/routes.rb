@@ -10,8 +10,18 @@ Rails.application.routes.draw do
   namespace :logger do
     root 'questions#index'
     resources :questions do
-      resources :answers,only: [:create,:destroy]
+      member do
+        post :upvote
+        post :downvote
+      end
+      resources :answers,only: [:create,:destroy] do
+        member do
+          post :upvote
+          post :downvote
+        end
+      end
     end
   end
+  
 end
  

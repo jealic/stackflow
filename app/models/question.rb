@@ -24,5 +24,5 @@ class Question < ApplicationRecord
   #找到收藏問題的 user
   
   has_many :upvotes, dependent: :destroy
-  has_many :upvoted_users, through: :upvotes, source: user
+  has_many :upvoted_users, through: :upvotes, source: :user
 end
