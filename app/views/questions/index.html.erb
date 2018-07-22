@@ -1,10 +1,10 @@
 <div class="question-remind">你需要註冊會員才能提問</div>
-<div class="col-md-8">
+<div class="col-md-7">
   <!----問題列表---->
   <h3>Top Questions：</h3>
   <% @questions.each do |question| %>
     <div class="row question-list">
-      <div class="col-md-4 col-sm-4 col-xs-2">
+      <div class="col-md-3 col-sm-3 col-xs-2">
         <div class="question-data">
           
           <div class="data-grid text-center">
@@ -15,17 +15,13 @@
             <div><%= question.answers.count %></div>
             <p>answers</p>
           </div>
-          <div class="data-grid text-center">
-            <div><%= question.favorites.count %></div>
-            <p>favorites</p>
-          </div>
         </div>   
 
       </div>
 
       <%= render partial:"shared/favorite",locals:{question:question} %> 
 
-      <div class="col-md-8 col-sm-8 col-xs-10">
+      <div class="col-md-9 col-sm-9 col-xs-10">
         <h4><strong><%= link_to question.topic, question_path(question) %></strong><h4>
         <h5><%= truncate(question.content,length:100) %></h5>
         <p>   

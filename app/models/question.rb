@@ -22,19 +22,14 @@ class Question < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :favorited_users, through: :favorites, source: :user
   #找到收藏問題的 user
-  
-<<<<<<< HEAD
-  has_many :upvotes
-
-  def is_favorited?(user)
-    self.favorited_users.include?(user)
-=======
   has_many :upvotes, dependent: :destroy
   has_many :upvoted_users, through: :upvotes, source: :user
 
+  def is_favorited?(user)
+    self.favorited_users.include?(user)
+  end 
   
   def is_upvoted?(user)
     self.upvoted_users.include?(user)
->>>>>>> 14d8421bfb56077e50767b7a21efd67895f16162
   end
 end
