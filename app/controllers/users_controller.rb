@@ -30,6 +30,16 @@ class UsersController < ApplicationController
     end
   end
 
+  def favoriteboard
+    @user = User.find(params[:id])
+    if @user == current_user
+      @favorited_questions = @user.favorited_questions.order(created_at: :desc)
+    else
+      flash[:alert]="you are not authenticated to view this page"
+      redirect_to logger_root_path
+    end
+  end
+
 
   private
 

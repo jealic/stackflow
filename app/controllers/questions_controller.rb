@@ -10,5 +10,6 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
     @answers = @question.answers.order(updated_at: :asc)
   end
+
 end
  
