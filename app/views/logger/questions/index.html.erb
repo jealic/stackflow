@@ -21,7 +21,7 @@
           <div class="form-group">
             <%= f.label :content, "Content" %>
             <%= f.text_area :content, placeholder:"What's on your mind ?", class:"form-control", rows:"5"%>
-          </div>
+          </div> 
           
           <div class="question-submit">
             <%= f.submit "Ask Question",class:"btn btn-success" %>
@@ -37,8 +37,15 @@
         <% @questions.each do |question| %>
           <div class="question-list col-md-12">
             <div class="col-md-3">
-              <%= link_to "favorite",favorite_logger_question_path(question) ,method: :post %>
-              <%= link_to "unfavorite", unfavorite_logger_question_path(question) ,method: :post %>
+              <% unless question.is_favorited?(current_user) %>
+                <%= link_to favorite_logger_question_path(question) ,method: :post do%>
+                  <buttom class="btn btn-warning"><span>Favorite ( <%= question.favorites.count %> )</span></buttom>
+                <% end %>
+              <% else %>
+                <%= link_to unfavorite_logger_question_path(question) ,method: :post do %>
+                  <buttom class="btn btn-warning"><span>Favorite ( <%= question.favorites.count %> )</span></buttom>
+                <% end %>
+              <% end %>
             </div>
             <div class="col-md-9">
               <h4><strong><%= link_to question.topic,logger_question_path(question) %></strong><h4>

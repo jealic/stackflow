@@ -24,4 +24,8 @@ class Question < ApplicationRecord
   #找到收藏問題的 user
   
   has_many :upvotes
+
+  def is_favorited?(user)
+    self.favorited_users.include?(user)
+  end
 end
