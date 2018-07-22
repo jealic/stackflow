@@ -10,6 +10,8 @@
 #
 
 class Favorite < ApplicationRecord
+  validates :question_id, uniqueness: { scope: :user_id }
+
   belongs_to :question, counter_cache: true
   belongs_to :user
 end
