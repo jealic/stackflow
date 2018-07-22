@@ -37,7 +37,8 @@
         <% @questions.each do |question| %>
           <div class="question-list col-md-12">
             <div class="col-md-3">
-              <%= render partial:"shared/favorite",locals:{question:question} %> 
+              <%= render partial:"shared/favorite",locals:{question:question} %>
+              <%= render partial:"shared/answer_count",locals:{question:question} %>
             </div>
             <div class="col-md-9">
               <h4><strong><%= link_to question.topic,logger_question_path(question) %></strong><h4>
