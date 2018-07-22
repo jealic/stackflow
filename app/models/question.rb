@@ -23,5 +23,6 @@ class Question < ApplicationRecord
   has_many :favorited_users, through: :favorites, source: :user
   #找到收藏問題的 user
   
-  has_many :upvotes
+  has_many :upvotes, dependent: :destroy
+  has_many :upvoted_users, through: :upvotes, source: user
 end

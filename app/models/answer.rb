@@ -17,5 +17,6 @@ class Answer < ApplicationRecord
   belongs_to :question, counter_cache: true #一個問題有多少個回答
   belongs_to :user, counter_cache: true
   has_many :upvotes, dependent: :destroy
+  has_many :upvoted_users, through: :upvotes, source: :user
   #突然覺得沒有counter_cache 也會知道一個 user 問過多少問題吧？
 end
