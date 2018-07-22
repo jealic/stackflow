@@ -1,9 +1,9 @@
 <% unless question.is_favorited?(current_user) %>
   <%= link_to favorite_logger_question_path(question) ,method: :post do%>
-    <buttom class="btn btn-warning" style="margin-top: 8px;"><span>Favorite ( <%= question.favorites.count %> )</span></buttom>
+    <buttom class="btn btn-warning btn-sm" style="margin-top: 8px;"><span>Unfavorite ( <%= question.favorites.count %> )</span></buttom>
   <% end %>
 <% else %>
   <%= link_to unfavorite_logger_question_path(question) ,method: :post do %>
-    <buttom class="btn btn-warning" style="margin-top: 8px;"><span>Favorite ( <%= question.favorites.count %> )</span></buttom>
+    <buttom class="btn btn-warning btn-sm" style="margin-top: 8px;"><span>Favorite ( <%= question.favorites.count %> )</span></buttom>
   <% end %>
 <% end %>
