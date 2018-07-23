@@ -13,7 +13,7 @@ class QuestionsController < ApplicationController
     @question.user = current_user
     if @question.save
       flash[:notice] = "question was successfully created"
-      redirect_to logger_questions_path
+      redirect_to questions_path
     else
       flash[:alert] = "question was failed to created"
       render :index
@@ -29,14 +29,14 @@ class QuestionsController < ApplicationController
   def favorite
     
     Favorite.create(user:current_user,question:@question)
-    redirect_back(fallback_location: logger_root_path)  # 導回上一頁
+    redirect_back(fallback_location: root_path)  # 導回上一頁
   end
 
   def unfavorite
     
     @unfavorite = Favorite.where(user:current_user,question:@question).first
     @unfavorite.destroy
-    redirect_back(fallback_location: logger_root_path)  # 導回上一頁
+    redirect_back(fallback_location: root_path)  # 導回上一頁
   end
 
   def upvote

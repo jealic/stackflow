@@ -8,12 +8,9 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
-      </button>
-      <% if current_user.present? %>
-        <%= link_to "Stackoverflow", logger_root_path, class: "navbar-brand" %>
-      <% else %>
+      </button>      
         <%= link_to "Stackoverflow", root_path, class: "navbar-brand" %>
-      <% end %>
+      
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->

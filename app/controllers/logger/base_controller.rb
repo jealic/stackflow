@@ -1,3 +1,2 @@
-class Logger::BaseController < ApplicationController
-  before_action :authenticate_user! 
+class Logger::BaseController < ApplicationController 
 end

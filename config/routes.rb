@@ -11,14 +11,20 @@ Rails.application.routes.draw do
       post :downvote
     end
 
-    resources :answers do
-      member do
-        post :upvote
-        post :downvote
-      end
+    resources :answers
+  end
+
+  resources :answers do
+    member do
+      post :upvote
+      post :downvote
     end
   end
 
-  
+  resources :users do
+    member do
+      get :favoriteboard
+    end
+  end
 end
  

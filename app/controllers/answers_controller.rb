@@ -1,15 +1,17 @@
 class AnswersController < ApplicationController
 
+  before_action :authenticate_user!
+
   def create
     @question = Question.find(params[:question_id])
     @answer = @question.answers.create(answer_params)
     @answer.user = current_user
     if @answer.save
       flash[:notice]="成功回答"
-      redirect_to logger_question_path(@question)
+      redirect_to question_path(@question)
     else
       flash[:alert]="回答失敗，請填入留言內容"
-      redirect_to logger_question_path(@question)
+      redirect_to question_path(@question)
     end
   end
 
@@ -19,7 +21,7 @@ class AnswersController < ApplicationController
     if current_user==@answer.user
       @answer.destroy
       flash[:alert]="successfully deleted"
-      redirect_to logger_question_path(@question)
+      redirect_to lquestion_path(@question)
     end  
   end 
 

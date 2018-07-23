@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  before_action :authenticate_user!
+
   def index
     @users = User.all
   end
@@ -39,7 +41,7 @@ class UsersController < ApplicationController
       @favorited_questions = @user.favorited_questions.order(created_at: :desc)
     else
       flash[:alert]="you are not authenticated to view this page"
-      redirect_to logger_root_path
+      redirect_to root_path
     end
   end
 
