@@ -42,7 +42,6 @@ namespace :dev  do
         content: FFaker::Lorem::sentence(50),
         user_id: User.all.ids.sample
       )
-      puts question.topic
     end
     puts "The above are the questions."
     puts "Have created #{Question.count} questions."
@@ -64,16 +63,16 @@ namespace :dev  do
   
   task fake_favorites: :environment do
     # 未來 favorite 假資料做在這裡
-    #Favorite.destroy_all
-    #User.all.each do |user|
-    #  5.times do |i|
-    #    user.favorites.create!(
-    #      question_id: Question.all.ids.sample
-    #      )
-    #  end
-    #end
+    Favorite.destroy_all
+    Question.all.each do |question|
+      1.times do |i|
+        question.favorites.create!(
+          user_id: User.all.ids.sample
+          )
+      end
+    end
     
-    #puts "Have created #{Favorite.count} favorites for users."
+    puts "Have created #{Favorite.count} favorites for users."
     ###### 無法寫入favorites_count 而不能進行 fake #######
   end
 
