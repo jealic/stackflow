@@ -5,7 +5,7 @@ class QuestionsController < ApplicationController
 
   def index
     @question = Question.new
-    @questions = Question.order(created_at: :desc)
+    @questions = Question.order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def create
@@ -23,7 +23,7 @@ class QuestionsController < ApplicationController
   def show
     
     @answer = Answer.new
-    @answers = @question.answers.order(updated_at: :asc)
+    @answers = @question.answers.order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def favorite
