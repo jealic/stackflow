@@ -1,5 +1,17 @@
-<h1>This is <%= @user.name %>'s Personal Page</h1>
-<hr>
+<div class="col-md-12">
+  <h1>
+    This is <%= @user.name %>'s Personal Page
+    <span class=float-right>
+      <% if @user.email == current_user.email %>
+        <%= link_to 'Edit Info', edit_user_path(@user), class: 'btn btn-info' %>
+      <% end %>
+    </span>
+  </h1>
+
+</div>
+
+<div class="clearfix"></div>
+<br>
   <div class="col-md-12">
     <div class="col-md-4">
       <% if @user.image? %>
@@ -9,30 +21,38 @@
       <% end %>
     </div>
     <div class="col-md-8">
-      <ul>
-        <li><strong>Email:</strong> <%= @user.email %></li>
-        <li><p><strong>Introduction:</strong> <%= @user.intro %></p></li>
-        <li><strong>Company:</strong> <%= @user.company %></li>
-        <li><strong>Job title:</strong> <%= @user.title %></li>
-        <li><strong>Website:</strong> <%= @user.website %></li>
-        <li><strong>Twitter:</strong> <%= @user.twitter %></li>
-        <li><strong>Github:</strong> <%= @user.github %></li>
-        <li><h5>
-          Questions: 
-          posted <%= @user.questions.count %>, 
-          answered <%= @user.answers.count %>, 
-          favorited <%= @user.favorites.count %>, 
-          <span style="color: red">got total <%= @total_upvotes %> upvotes.</span>
+      
+      <table class="table">
+        <tr>
+          <th>Email:</th>
+          <td><%= @user.email %></td>
+        </tr>
+        <tr>
+          <th>Website:</th>
+          <td><%= @user.website %></td>
+        </tr>
+        <tr>
+          <th>Twitter:</th>
+          <td><%= @user.twitter %></td>
+        </tr>
+        <tr>
+          <th>Github:</th>
+          <td><%= @user.github %></td>
+        </tr>
+        <tr>
+          <th>Company/Title:</th>
+          <td><%= @user.company %> / <%= @user.title %></td>
+        </tr>
+        <tr>
+          <th>Intro:</th>
+          <td><%= @user.intro %></td>
+        </tr>        
 
-        </h5></li>
-      </ul>
-      <div class="col-md-8">
-        <% if @user.email == current_user.email %>
-          <%= link_to 'Edit Info', edit_user_path(@user), class: 'btn btn-info' %>
-        <% end %>
-
-      </div>
+      </table>
+      
     </div>
+    <div class="text-center">
+      <h3><strong>Questions:</strong> posted 7 / answered 19 / got total <span style="color: red"><%= @total_upvotes %> upvotes.</span></h3>
   </div>
   
   <div class="clearfix"></div>
