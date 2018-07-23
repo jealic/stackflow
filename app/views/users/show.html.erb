@@ -45,11 +45,7 @@
       <% @posted_questions.each do |question| %>
         <li class = "list-group-item">
           <span class="badge", alt="upvotes count"><%= question.upvotes_count %></span>
-          <% if user_signed_in? %>
-            <%= link_to truncate(question.topic, length: 40), logger_question_path(question) %>
-          <% else %>
-            <%= link_to truncate(question.topic, length: 40), question_path(question) %>
-          <% end %>
+          <%= link_to truncate(question.topic, length: 40), question_path(question) %>
         </li>
       <% end %>
     </div>
@@ -62,13 +58,9 @@
       <% @answers.each do |answer| %>
         <li class="list-group-item">
           <span class="badge", alt="Upvotes Count"><%= answer.upvotes_count %></span>
-          <% if user_signed_in? %>
-            <%= link_to truncate(answer.question.topic, length:40), logger_question_path(answer.question) %>
-          <% else %>
-            <%= link_to truncate(answer.question.topic, length: 40), question_path(answer.question) %>
-          <% end %>
-        <% end %>
-      </li>
+          <%= link_to truncate(answer.question.topic, length: 40), question_path(answer.question) %>
+        </li>
+      <% end %>
     </div>
   </div>
 </div>
@@ -77,14 +69,10 @@
     <div class="panel-heading">Recent Favorites</div>
     <div class="list-group">
       <% @favorited_questions.each do |favorite| %>
-      <li class="list-group-item">
-        <span class="badge"><%= favorite.question.favorites_count %></span>
-        <% if user_signed_in? %>
-          <%= link_to truncate(favorite.question.topic, length:40), logger_question_path(favorite.question) %>
-        <% else %>
+        <li class="list-group-item">
+          <span class="badge"><%= favorite.question.favorites_count %></span>
           <%= link_to truncate(favorite.question.topic, length:40), question_path(favorite.question) %>
-        <% end %>
-      </li>
+        </li>
       <% end %>
       
     </div>

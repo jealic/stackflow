@@ -3,36 +3,28 @@ Rails.application.routes.draw do
   devise_for :users
 
   root 'questions#index'
-  resources :questions,only: [:show] 
-  
+  resources :questions do
+    member do
+      post :favorite
+      post :unfavorite
+      post :upvote
+      post :downvote
+    end
+
+    resources :answers
+  end
+
+  resources :answers do
+    member do
+      post :upvote
+      post :downvote
+    end
+  end
 
   resources :users do
     member do
       get :favoriteboard
     end
   end
-  
-  namespace :logger do
-    root 'questions#index'
-    resources :questions do
-
-      resources :answers,only: [:create,:destroy]
-
-      member do
-        post :favorite
-        post :unfavorite
-        post :upvote
-        post :downvote
-      end
-    end
-    
-    resources :answers do
-      member do
-        post :upvote
-        post :downvote
-      end
-    end
-  end
-  
 end
  

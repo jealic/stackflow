@@ -1,8 +1,39 @@
-<div class="question-remind">你需要註冊會員才能提問</div>
-<div class="col-md-7">
+
+<% if @question.errors.any? %>
+  <h2>We have some errors here !</h2>
+  <ul>
+    <% @question.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<div class="col-md-8">
+  <!----問題表格---->
+  <%= form_for [@question] do |f| %>
+    <div class="form-group">
+      <%= f.label :topic, "Title" %>
+      <%= f.text_field :topic, placeholder:"title",class:"form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :content, "Content" %>
+      <%= f.text_area :content, placeholder:"What's on your mind ?", class:"form-control", rows:"5"%>
+    </div>
+    
+    <div class="question-submit">
+      <%= f.submit "Ask Question",class:"btn btn-success" %>
+    </div>
+  <% end %>
+
+  <!----分行---->
+  <div class="clearfix"></div>
+  <hr>
+
   <!----問題列表---->
   <h3>Top Questions：</h3>
   <% @questions.each do |question| %>
+    
     <div class="row question-list">
       <div class="col-md-3 col-sm-3 col-xs-2">
         <div class="question-data">
@@ -15,12 +46,11 @@
             <div><%= question.answers.count %></div>
             <p>answers</p>
           </div>
-        </div>   
+        </div>
+        <%= render partial:"shared/favorite",locals:{question:question} %>   
+        
 
       </div>
-
-      <%= render partial:"shared/favorite",locals:{question:question} %> 
-
       <div class="col-md-9 col-sm-9 col-xs-10">
         <h4><strong><%= link_to question.topic, question_path(question) %></strong><h4>
         <h5><%= truncate(question.content,length:100) %></h5>
@@ -30,7 +60,9 @@
         </p>
       </div> 
     </div>
+    
   <% end %>
+  
 </div>
 
 <div class="col-md-4">
