@@ -71,13 +71,13 @@
                 
                 <em><%= time_ago_in_words(answer.created_at)%> ago - </em>
                 <% if current_user==answer.user %> 
-                 <%= link_to "Delete", logger_question_answer_path(@question,answer),method: :delete, data: {confirm: "Are You Sure"} %>
+                 <%= link_to "Delete", question_answer_path(@question,answer),method: :delete, data: {confirm: "Are You Sure"} %>
                 <% end %>
               </span>
             </div>
           </div>
         <% end %>
-        <%= link_to "Back",logger_root_path,class:"btn btn-primary",style:"margin-bottom:20px;"  %>
+        <%= link_to "Back",root_path,class:"btn btn-primary",style:"margin-bottom:20px;"  %>
       </div> 
       <div class="col-md-5">
         
