@@ -7,17 +7,6 @@ class Admin::QuestionsController < Admin::BaseController
     @questions = Question.order(created_at: :desc)
   end
 
-  def create
-    @question = Question.create(question_params)
-    @question.user = current_user
-    if @question.save
-      flash[:notice] = "question was successfully created"
-      redirect_to logger_questions_path
-    else
-      flash[:alert] = "question was failed to created"
-      render :index
-    end
-  end
 
   def show
     
