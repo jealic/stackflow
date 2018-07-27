@@ -15,8 +15,8 @@ class QuestionsController < ApplicationController
       flash[:notice] = "question was successfully created"
       redirect_to questions_path
     else
-      flash[:alert] = "question was failed to created"
-      render :index
+      flash[:alert] = "question was failed to created, content can't be blank"
+      redirect_to questions_path
     end
   end
 

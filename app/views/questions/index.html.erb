@@ -1,13 +1,3 @@
-
-<% if @question.errors.any? %>
-  <h2>We have some errors here !</h2>
-  <ul>
-    <% @question.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-  </ul>
-<% end %>
-
 <div class="col-md-8">
   <!----問題表格---->
   <%= form_for [@question] do |f| %>

@@ -36,6 +36,7 @@
             <% end %>
             <h4><%= link_to user.name,user_path(user) %></h4>    
             <%= link_to 'Edit Info', edit_user_path(user), class: 'btn btn-info' %>
+            <%= link_to "destroy", user_path(user), method: :delete,data:{confirm:"Are you sure to delete ?"} %>
           </div>
         </div> 
       <% end %> 
