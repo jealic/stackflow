@@ -39,11 +39,16 @@ class UsersController < ApplicationController
 
   def destroy
     @user = User.find(params[:id])
-    if @user.destroy
-        flash[:notice]="user was successfully deleted"
+    if current_user.admin?
+      if @user.destroy
+        flash[:notice]="user has been deleted"
         redirect_to admin_root_path
+      else
+        flash[:alert] = @user.errors.full_messages.to_sentence
+        redirect_to admin_root_path
+      end
     end
-  end
+  end 
 
   def favoriteboard
     @user = User.find(params[:id])

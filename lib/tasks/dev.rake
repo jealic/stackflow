@@ -10,7 +10,8 @@ namespace :dev  do
         title: FFaker::Job::title,
         website: "test.website.com",
         twitter: "test.twitter",
-        github: "test.github"
+        github: "test.github",
+        role:'admin'
       )
     user.save!
     puts "帳：test@test.com"

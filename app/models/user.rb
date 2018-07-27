@@ -41,7 +41,8 @@ class User < ApplicationRecord
   has_many :answered_questions, through: :answers, source: :question
   #一個 user 回答過的問題
 
-  has_many :answers, dependent: :restrict_with_error
+  #has_many :answers, dependent: :restrict_with_error
+  has_many :answers, dependent: :destroy
   has_many :favorites, dependent: :destroy #個人所有的收藏
   has_many :favorited_questions, through: :favorites, source: :question #個人收藏的『餐廳』
 
