@@ -26,5 +26,9 @@ Rails.application.routes.draw do
       get :favoriteboard
     end
   end
+
+  namespace :admin do
+    root 'users#index'
+  end
 end
  

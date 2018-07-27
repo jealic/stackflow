@@ -10,7 +10,11 @@
         <span class="icon-bar"></span>
       </button>      
         <%= link_to "Stackoverflow", root_path, class: "navbar-brand" %>
-      
+        <% if current_user %>
+          <% if current_user.admin? %>
+            <%= link_to "Admin Access",admin_root_path, class: "navbar-brand" %>
+          <% end %>
+        <% end %>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->

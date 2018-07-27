@@ -49,4 +49,8 @@ class User < ApplicationRecord
   has_many :upvoted_questions, through: :upvotes, source: :question #個人推的問題
   has_many :upvoted_answers, through: :upvotes, source: :answer #個人推的答案
 
+  def admin?
+    self.role == "admin"
+  end
+
 end
