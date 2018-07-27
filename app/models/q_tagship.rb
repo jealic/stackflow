@@ -1,0 +1,2 @@
+class QTagship < ApplicationRecord
+end
