@@ -46,7 +46,7 @@
     <% @answers.each do |answer| %>
       <div class="panel panel-success">
         <div class="panel-heading">
-          <h3 class="panel-title"><%= answer.user.name %></h3>
+          <h3 class="panel-title"><%= link_to answer.user.name , user_path(answer.user),style:"text-decoration:none;"%></h3>
         </div>  
 
         <div class="panel-body">
@@ -64,11 +64,11 @@
             <% end %>
           </div>
 
-          <span>
+          <span> 
             
-            <em><%= time_ago_in_words(answer.created_at)%> ago - </em>
-            <% if current_user==answer.user %> 
-             <%= link_to "Delete", question_answer_path(@question,answer),method: :delete, data: {confirm: "Are You Sure"} %>
+            <em><%= time_ago_in_words(answer.created_at)%> ago </em>
+            <% if answer.user == current_user || current_user.admin? %> 
+             <%= link_to "Delete", question_answer_path(@question,answer),method: :delete, data: {confirm: "Are You Sure to delete the answer ?"} , class:"label label-danger" %>
             <% end %>
           </span>
         </div>

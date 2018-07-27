@@ -1,7 +1,7 @@
 class QuestionsController < ApplicationController
 
   before_action :authenticate_user!, only: [:create, :favorite, :unfavorite, :upvote, :downvote]
-  before_action :set_question, only: [:upvote, :downvote, :show, :favorite, :unfavorite]
+  before_action :set_question, only: [:upvote, :downvote, :show, :favorite, :unfavorite, :destroy]
 
   def index
     @question = Question.new
@@ -17,6 +17,15 @@ class QuestionsController < ApplicationController
     else
       flash[:alert] = "question was failed to created, content can't be blank"
       redirect_to questions_path
+    end
+  end
+
+  def destroy
+    if current_user || current_user.admin? 
+      if @question.destroy
+        flash[:notice] = "question was successfully deleted"
+        redirect_to root_path
+      end
     end
   end
 
