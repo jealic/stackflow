@@ -24,6 +24,7 @@ gem 'ffaker'
 gem 'carrierwave'
 gem 'kaminari'
 gem 'simple_form'
+gem 'omniauth-github'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
