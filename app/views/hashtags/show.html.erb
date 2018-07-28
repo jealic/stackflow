@@ -4,6 +4,7 @@
 
 <!-- 以下放 hashtags  -->
 <div class="col-md-4">
+  <h4>Click to Search by Tag:</h4>
   <%= link_to 'All',root_path,class:"btn tag-btn" %>
   <% @hashtags.each do |hashtag| %>
     <% if hashtag.name == @hashtag.name %>

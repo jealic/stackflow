@@ -6,23 +6,22 @@
  
 <!-- 以下放 hashtags  -->
 <div class="col-md-4">
-  <div class="">
-    <% if @hashtag.errors.any? %>
-      <div>
-        <b><%= @hashtag.errors.full_messages.to_sentence %></b>
-      </div>
-    <% end %>
-  </div>
-  <div class="">
+    <div class="">
     <h4>Click to Search by Tag:</h4>
     <%= link_to 'All',root_path, class:"btn tag-btn-active" %>
     <% @hashtags.each do |hashtag| %>
-      <%= link_to hashtag.name, hashtag_path(hashtag), class: 'btn tag-btn' %>
+      <% if hashtag.name == @hashtag.name %>
+        <%= link_to hashtag.name, hashtag_path(hashtag), class: 'btn tag-btn-active' %>
+      <% else %>
+        <%= link_to hashtag.name, hashtag_path(hashtag), class: 'btn tag-btn' %>
+      <% end %> 
     <% end %>
   </div>
   <div class="clearfix"></div>
   <hr>
-
+  <div class="">
+    <b><%= @hashtag.errors.full_messages.to_sentence if @hashtag.errors.any? %></b>
+  </div>
   <div class="form-inline">
     <%= form_for @hashtag do |f| %>
       <div class="form-group">
@@ -33,7 +32,23 @@
         <%= link_to 'Cancel', root_path, class: 'btn btn-warning' if @hashtag.name.present? %>
       </div>
     <% end %>
-
   </div>
+  <br>
+  <div class="edit-tag">
+    <div class="dropdown">
+      <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Choose Tag to Edit <span class="caret"></span>
+      </button>
+      
+      <ul class="dropdown-menu">
+        <% @hashtags.each do |hashtag| %>
+          <li><%= link_to hashtag.name, questions_path(id: hashtag.id), class: 'dropdown-item' %></li>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+  
+
   
 </div>
