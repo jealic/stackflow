@@ -44,7 +44,7 @@
         <h4><strong><%= link_to question.topic, question_path(question) %></strong></h4>
         <% question.q_tagships.each do |tag| %>
           <p class="label label-default"><%= tag.hashtag.name %></p>
-        <% end %><br>
+        <% end %>
         <h5><%= truncate(question.content, length:100) %></h5>
         <p class="time-tag">   
           Ask <%= time_ago_in_words(question.created_at) %> ago
