@@ -32,7 +32,9 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable,
+         :omniauthable, omniauth_providers: [:github]
+
 
   mount_uploader :image, AvatarUploader #先打此行才 rails g controller users 會出現錯誤
   validates_presence_of :name, :email
@@ -54,4 +56,28 @@ class User < ApplicationRecord
     self.role == "admin"
   end
 
+  def self.from_omniauth(auth)
+    #case 1: Find existing user bt github uid
+#    user = User.find_by_gh_uid(auth.uid)
+#    if user
+#      user.gh_token = auth.credentials.token
+#      user.save!
+#      return user
+#    end
+    
+    #case 2: find exsition user by email
+    existing_user = User.find_by_email(auth.info.email)
+    if existing_user
+      return existing_user
+    end
+
+    #case 3: create new password
+    user = User.new
+    user.name = auth.info.name
+    user.email = auth.info.email
+    user.password = Devise.friendly_token[0,20]
+    user.save!  
+    return user
+  end 
+  
 end
