@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
   
 
-  root 'questions#index'
+  root 'questions#index' 
   resources :questions do
     member do
       post :favorite
@@ -14,6 +14,8 @@ Rails.application.routes.draw do
 
     resources :answers
   end
+
+  resources :hashtags, only: [:show]
 
   resources :answers do
     member do
