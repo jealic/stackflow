@@ -26,10 +26,6 @@ Rails.application.routes.draw do
     member do
       get :favoriteboard
     end
-
-    member do
-      get :update_password
-    end
   end
 
   namespace :admin do
