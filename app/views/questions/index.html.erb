@@ -1,6 +1,6 @@
 <div class="col-md-8">
   <!----問題表格---->
-  <%= form_for [@question] do |f| %>
+  <%= form_for @question do |f| %>
     <div class="form-group">
       <%= f.label :topic, "Title" %>
       <%= f.text_field :topic, placeholder:"title",class:"form-control" %>
@@ -9,6 +9,10 @@
     <div class="form-group">
       <%= f.label :content, "Content" %>
       <%= f.text_area :content, placeholder:"What's on your mind ?", class:"form-control", rows:"5"%>
+    </div>
+
+    <div class="form-group">
+       <%= f.collection_check_boxes :hashtag_ids, Hashtag.all, :id, :name, {prompt: true}%>
     </div>
     
     <div class="question-submit">
@@ -44,7 +48,7 @@
         <h4><strong><%= link_to question.topic, question_path(question) %></strong></h4>
         <% question.q_tagships.each do |tag| %>
           <p class="label label-default"><%= tag.hashtag.name %></p>
-        <% end %><br>
+        <% end %>
         <h5><%= truncate(question.content, length:100) %></h5>
         <p class="time-tag">   
           Ask <%= time_ago_in_words(question.created_at) %> ago

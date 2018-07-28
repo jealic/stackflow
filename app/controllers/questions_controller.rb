@@ -20,6 +20,7 @@ class QuestionsController < ApplicationController
       flash[:alert] = "question was failed to created, content can't be blank"
       redirect_to questions_path
     end
+
   end
 
   def destroy
@@ -69,7 +70,7 @@ class QuestionsController < ApplicationController
   private
   
   def question_params
-    params.require(:question).permit(:topic,:content)
+    params.require(:question).permit(:topic,:content, :hashtag_ids => [])
   end
 
   def set_question

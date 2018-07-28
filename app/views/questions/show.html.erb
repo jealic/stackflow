@@ -21,7 +21,13 @@
   <hr>
   
     <!----瀏覽問題---->    
-    <h4><strong>Question:</strong></h4>
+    <h4>
+      <strong>Question:</strong>
+      <% @question.q_tagships.each do |tag| %>
+        <p class="label label-default"><%= tag.hashtag.name %></p>
+    <% end %>
+    </h4>
+    
     <%= render partial:"shared/favorite",locals:{question:@question} %>
 
     <h5><%= simple_format(@question.content) %></h5>
