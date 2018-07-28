@@ -1,6 +1,15 @@
 class HashtagsController < ApplicationController
+
   before_action :authenticate_user!, only: [:create, :edit, :destory]
   before_action :set_hashtag, only: [:update, :destroy]
+  
+  def show
+    @hashtags = Hashtag.all
+    @hashtag = Hashtag.find(params[:id])
+    @questions = @hashtag.questions.order(created_at: :desc).page(params[:page]).per(10)
+    @question = Question.new
+    @q_tagships = @question.q_tagships
+  end 
   
   def create
     @hashtag = Hashtag.new(hashtag_params)
@@ -38,5 +47,4 @@ class HashtagsController < ApplicationController
   def set_hashtag
     @hashtag = Hashtag.find(params[:id])
   end
-  
 end

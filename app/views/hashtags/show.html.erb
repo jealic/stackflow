@@ -60,11 +60,11 @@
               <%= link_to "delete",question_path(question),method: :delete, data:{confirm:"Are you sure to delete the question?"} ,class:"label label-danger"%>
             <% end %>
           <% end %>
-        </p> 
+        </p>
       </div> 
     </div>
     
-  <% end %>
+  <% end %> 
   
   <div class="text-center">
     <%= paginate @questions %>
@@ -73,29 +73,12 @@
 </div>
 <!-- 以下放 hashtags  -->
 <div class="col-md-4">
-  <div class="">
-    <%= link_to 'All',root_path,class:"btn tag-btn-active" %>
-    <% @hashtags.each do |hashtag| %>
+  <%= link_to 'All',root_path,class:"btn tag-btn" %>
+  <% @hashtags.each do |hashtag| %>
+    <% if hashtag.name == @hashtag.name %>
+      <%= link_to hashtag.name, hashtag_path(hashtag), class: 'btn tag-btn-active' %>
+    <% else %>
       <%= link_to hashtag.name, hashtag_path(hashtag), class: 'btn tag-btn' %>
     <% end %>
-  </div>
-  <div class="clearfix"></div>
-  <hr>
-
-  <div class="form-inline">
-    <%= form_for @hashtag do |f| %>
-      <div class="form-group">
-        <%= f.text_field :name, placeholder: "Hashtag name", class: 'form-control' %>
-      </div>
-      <%= f.submit 'new hashtag', class: 'btn btn-primary' %>
-      <%= link_to 'Cancel', root_path, class: 'btn btn-warning' if @hashtag.name.present? %>
-    <% end %>
-  </div>
-  <div class="">
-    <% if @hashtag.errors.any? %>
-      <div>
-        <b><%= @hashtag.errors.full_messages.to_sentence %></b>
-      </div>
-    <% end %>
-  </div>
+  <% end %>
 </div>
