@@ -18,7 +18,7 @@ class QuestionsController < ApplicationController
       flash[:notice] = "question was successfully created"
       redirect_to questions_path
     else
-      flash[:alert] = "question was failed to created, content can't be blank"
+      flash[:alert] = "question was failed to created, content can't be blank or question can have at most 3 hashtags"
       redirect_to questions_path
     end
 

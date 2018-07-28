@@ -18,6 +18,7 @@ class HashtagsController < ApplicationController
       flash[:notice] = "Just added a new tag."
     else
       @hashtags = Hashtag.all
+      flash[:alert] = "#{@hashtag.errors.full_messages.to_sentence}"
     end
     
     redirect_to root_path

@@ -28,7 +28,7 @@ class Question < ApplicationRecord
   
   has_many :q_tagships, dependent: :destroy
   has_many :hashtags, through: :q_tagships
-  
+  validates_length_of :hashtags, maximum: 3
 
   def is_favorited?(user)
     self.favorited_users.include?(user)
