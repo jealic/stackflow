@@ -6,6 +6,7 @@ class QuestionsController < ApplicationController
   def index
     @question = Question.new
     @questions = Question.order(created_at: :desc).page(params[:page]).per(10)
+    @hashtags = Hashtag.all
   end
 
   def create
@@ -60,6 +61,8 @@ class QuestionsController < ApplicationController
     upvotes.destroy_all
     redirect_back(fallback_location: root_path)
   end
+
+
 
 
   private

@@ -63,3 +63,10 @@
   </div>
   
 </div>
+<!-- 以下放 hashtags  -->
+<div class="col-md-4">
+  <% @hashtags.each do |hashtag| %>
+    <%= link_to hashtag.name, root_path, class: 'btn tag-btn' %>
+  <% end %>
+  
+</div>
