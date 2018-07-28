@@ -37,7 +37,7 @@
         <!----回答留言---->
         <%= form_for [:logger,@question,@answer] do |f| %>
           <div class="form-group">
-            <%= f.text_area :content, placeholder:"What's your answer", class:"form-control",rows:"4" %>
+            <%= f.text_area :content, placeholder:"What's your answer", class:"form-control", rows:"4" %>
           </div>
           <div class="form-group">
             <%= f.submit "Answer" ,class:"btn btn-primary"  %>
@@ -71,13 +71,13 @@
                 
                 <em><%= time_ago_in_words(answer.created_at)%> ago - </em>
                 <% if current_user==answer.user %> 
-                 <%= link_to "Delete", logger_question_answer_path(@question,answer),method: :delete, data: {confirm: "Are You Sure"} %>
+                 <%= link_to "Delete", logger_question_answer_path(@question,answer), method: :delete, data: {confirm: "Are You Sure"} %>
                 <% end %>
               </span>
             </div>
           </div>
         <% end %>
-        <%= link_to "Back",logger_root_path,class:"btn btn-primary",style:"margin-bottom:20px;"  %>
+        <%= link_to "Back", logger_root_path,class:"btn btn-primary", style: "margin-bottom:20px;"  %>
       </div> 
       <div class="col-md-5">
         
