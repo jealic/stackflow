@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   devise_for :users
+  
 
   root 'questions#index'
   resources :questions do
@@ -25,6 +26,10 @@ Rails.application.routes.draw do
     member do
       get :favoriteboard
     end
+  end
+
+  namespace :admin do
+    root 'users#index'
   end
 end
  

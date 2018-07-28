@@ -20,8 +20,8 @@ class AnswersController < ApplicationController
     @answer = @question.answers.find(params[:id]) 
     if current_user==@answer.user
       @answer.destroy
-      flash[:alert]="successfully deleted"
-      redirect_to lquestion_path(@question)
+      flash[:notice]="successfully deleted"
+      redirect_to question_path(@question)
     end  
   end 
 

@@ -19,8 +19,10 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-    unless @user == current_user
-      redirect_to user_path(@user)
+    if current_user == current_user.admin?
+      unless @user == current_user
+        redirect_to user_path(@user)      
+      end
     end
   end
 
@@ -34,6 +36,19 @@ class UsersController < ApplicationController
       render :edit
     end
   end
+
+  def destroy
+    @user = User.find(params[:id])
+    if current_user.admin?
+      if @user.destroy
+        flash[:notice]="user has been deleted"
+        redirect_to admin_root_path
+      else
+        flash[:alert] = @user.errors.full_messages.to_sentence
+        redirect_to admin_root_path
+      end
+    end
+  end 
 
   def favoriteboard
     @user = User.find(params[:id])

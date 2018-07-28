@@ -1,0 +1,53 @@
+<style>
+  .admin-user-list{
+  border: 1px solid #ddd;
+  margin-top: 10px;
+  padding: 10px;
+  text-align: center;
+    }
+
+.admin-user-list img{
+ }
+
+</style>
+<div class="col-md-12">
+  <div class="col-md-12">
+    <h2 class="text-center">ALPHACAMP Stackflow 管理後台</h2>
+    <hr>
+
+    <ul class="nav nav-tabs">
+      <li role="presentation" class="active">
+        <%= link_to '使用者列表', admin_root_path %>
+      </li>
+
+      <li role="presentation">
+        
+      </li>
+    </ul>
+
+    <div class="admin-users-content"> 
+      <% @users.each do |user| %>
+        <div class="col-xs-12 col-sm-6 col-md-4">
+          <div class="col-xs-12 col-sm-12 col-md-12 admin-user-list">
+            <% if user.image? %> 
+              <%= image_tag user.image, width: '150px', class:"img-circle" %>
+            <% else %>
+              <%= image_tag ("avatar.png"), alt: 'avatar',width: '150px', class:"img-circle"%>
+            <% end %>
+            <h4>
+              <%= link_to user.name,user_path(user) %>
+              <% if user == current_user %>
+                <% if current_user.admin? %>
+                  <span class="label label-warning">Admin</span>
+                <% end %>  
+              <% end %>
+            </h4>    
+            <%= link_to 'Edit Info', edit_user_path(user), class: 'btn btn-info' %>
+            <%= link_to "destroy", user_path(user), method: :delete,data:{confirm:"Are you sure to delete ?"},class:"btn btn-danger" %>
+          </div>
+        </div> 
+      <% end %> 
+    </div>
+
+  </div>
+</div>
