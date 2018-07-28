@@ -47,6 +47,7 @@ namespace :dev  do
     puts "The above are the questions."
     puts "Have created #{Question.count} questions."
   end
+
   
   task fake_answers: :environment do
     # 未來 answer 假資料做在這裡
