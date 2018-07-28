@@ -5,8 +5,7 @@ class Hashtag < ApplicationRecord
 
   validates_presence_of :name
   validates :name, length: { maximum: 10, message: "hashtag can be allowed at most 10 words" }
-  validates :name, format: { with: /\p{Han}|\A[a-zA-Z]+\z/,message: "only allows letters" }
-  validates :name, format: { without: /[ ]|[*]|[_]|[?]/,message: "special char is not allowed" }
+  validates :name, format: { with: /\p{Han}|\A[a-zA-Z]+\z|[ ]|[*]|[_]|[?]/,message: "only allows letters or few special chars" }
 
 
   has_many :q_tagships
