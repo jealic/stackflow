@@ -12,7 +12,7 @@
     </div>
 
     <div class="form-group">
-       <%= f.collection_check_boxes :q_tagship, :hashtag_ids, Hashtag.all, :id, :name, {prompt: true}, {class: "form-control"}%>
+       <%= f.collection_check_boxes :hashtag_ids, Hashtag.all, :id, :name, {prompt: true}%>
     </div>
     
     <div class="question-submit">

@@ -26,8 +26,9 @@ class Question < ApplicationRecord
   has_many :upvoted_users, through: :upvotes, source: :user
   #標籤關聯
   
-  has_many :hashtags, through: :q_tagships
   has_many :q_tagships, dependent: :destroy
+  has_many :hashtags, through: :q_tagships
+  
 
   def is_favorited?(user)
     self.favorited_users.include?(user)
