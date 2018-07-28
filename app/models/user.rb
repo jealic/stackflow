@@ -32,7 +32,9 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable,
+         :omniauthable, omniauth_providers: [:github]
+
 
   mount_uploader :image, AvatarUploader #先打此行才 rails g controller users 會出現錯誤
   validates_presence_of :name, :email
