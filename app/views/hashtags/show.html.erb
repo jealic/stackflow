@@ -4,13 +4,42 @@
 
 <!-- 以下放 hashtags  -->
 <div class="col-md-4">
-  <h4>Click to Search by Tag:</h4>
-  <%= link_to 'All',root_path,class:"btn tag-btn" %>
-  <% @hashtags.each do |hashtag| %>
-    <% if hashtag.name == @hashtag.name %>
-      <%= link_to hashtag.name, hashtag_path(hashtag), class: 'btn tag-btn-active' %>
-    <% else %>
-      <%= link_to hashtag.name, hashtag_path(hashtag), class: 'btn tag-btn' %>
+  <div class="">
+    <h4>Click to Search by Tag:</h4>
+    <%= link_to 'All',root_path, class: "btn tag-btn" %>
+    <% @hashtags.each do |hashtag| %>
+      <% if hashtag.name == @hashtag.name %>
+        <%= link_to hashtag.name, hashtag_path(hashtag), class: 'btn tag-btn-active' %>
+      <% else %>
+        <%= link_to hashtag.name, hashtag_path(hashtag), class: 'btn tag-btn' %>
+      <% end %> 
     <% end %>
+  </div>
+
+
+  <% if user_signed_in? %>
+  <div class="clearfix"></div>
+  <hr>
+    <div class="">
+      <b><%= @hashtag.errors.full_messages.to_sentence if @hashtag.errors.any? %></b>
+    </div>
+
+    <div class="form-inline">
+      <%= form_for @hashtag do |f| %>
+        <div class="form-group">
+          <%= f.text_field :name, placeholder: "Hashtag name", class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <% if @hashtag.name.present? %>
+            <%= f.submit 'edit tag', class: 'btn btn-primary' %>
+            <%= link_to 'cancel', root_path, class: 'btn btn-warning' %>          
+          <% else %>
+            <%= f.submit 'add tag', class: 'btn btn-info' %>
+          <% end %>
+        </div>
+        <br>
+        <%= link_to 'Delete', hashtag_path(@hashtag), style: 'color:red', method: :delete, data: {confirm: "Are you sure?"} %>
+      <% end %>
+    </div>
   <% end %>
 </div>

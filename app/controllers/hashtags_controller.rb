@@ -1,7 +1,7 @@
 class HashtagsController < ApplicationController
 
-  before_action :authenticate_user!, only: [:create, :edit, :destory]
-  before_action :set_hashtag, only: [:update, :destroy]
+  before_action :authenticate_user!, only: [:create, :update, :destory]
+  before_action :set_hashtag, only: [:edit, :update, :destroy]
   
   def show
     @hashtags = Hashtag.all
@@ -12,6 +12,7 @@ class HashtagsController < ApplicationController
   end 
   
   def create
+     
     @hashtag = Hashtag.new(hashtag_params)
     if @hashtag.save
       flash[:notice] = "Just added a new tag."
@@ -19,6 +20,7 @@ class HashtagsController < ApplicationController
       @hashtags = Hashtag.all
       flash[:alert] = "#{@hashtag.errors.full_messages.to_sentence}"
     end
+    
     redirect_to root_path
     
   end
@@ -32,6 +34,7 @@ class HashtagsController < ApplicationController
     end
     redirect_to root_path
   end
+
   def destroy
     
     @hashtag.destroy
