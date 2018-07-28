@@ -56,4 +56,28 @@ class User < ApplicationRecord
     self.role == "admin"
   end
 
+  def self.from_omniauth(auth)
+    #case 1: Find existing user bt github uid
+#    user = User.find_by_gh_uid(auth.uid)
+#    if user
+#      user.gh_token = auth.credentials.token
+#      user.save!
+#      return user
+#    end
+    
+    #case 2: find exsition user by email
+    existing_user = User.find_by_email(auth.info.email)
+    if existing_user
+      return existing_user
+    end
+
+    #case 3: create new password
+    user = User.new
+    user.name = auth.info.name
+    user.email = auth.info.email
+    user.password = Devise.friendly_token[0,20]
+    user.save!  
+    return user
+  end 
+  
 end
