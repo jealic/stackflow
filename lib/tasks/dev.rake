@@ -77,6 +77,15 @@ namespace :dev  do
     ###### 無法寫入favorites_count 而不能進行 fake #######
   end
 
+  task fake_q_tagships: :environment do
+    Question.all.each do |question|
+      question.q_tagships.create!(
+        hashtag_id: Hashtag.all.ids.sample
+      )
+    end
+    puts "all questions have hashtags"
+  end
+
   # 快速一個指令重建
   task rebuild: [
     "db:drop",
