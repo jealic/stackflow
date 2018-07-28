@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
     resources :answers
   end
+  resources :hashtags
 
   resources :hashtags, only: [:show]
 

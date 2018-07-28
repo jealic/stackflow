@@ -73,8 +73,29 @@
 </div>
 <!-- 以下放 hashtags  -->
 <div class="col-md-4">
-  <%= link_to 'All',root_path,class:"btn tag-btn-active" %>
-  <% @hashtags.each do |hashtag| %>
-    <%= link_to hashtag.name, hashtag_path(hashtag), class: 'btn tag-btn' %>
-  <% end %>
+  <div class="">
+    <%= link_to 'All',root_path,class:"btn tag-btn-active" %>
+    <% @hashtags.each do |hashtag| %>
+      <%= link_to hashtag.name, hashtag_path(hashtag), class: 'btn tag-btn' %>
+    <% end %>
+  </div>
+  <div class="clearfix"></div>
+  <hr>
+
+  <div class="form-inline">
+    <%= form_for @hashtag do |f| %>
+      <div class="form-group">
+        <%= f.text_field :name, placeholder: "Hashtag name", class: 'form-control' %>
+      </div>
+      <%= f.submit 'new hashtag', class: 'btn btn-primary' %>
+      <%= link_to 'Cancel', root_path, class: 'btn btn-warning' if @hashtag.name.present? %>
+    <% end %>
+  </div>
+  <div class="">
+    <% if @hashtag.errors.any? %>
+      <div>
+        <b><%= @hashtag.errors.full_messages.to_sentence %></b>
+      </div>
+    <% end %>
+  </div>
 </div>
