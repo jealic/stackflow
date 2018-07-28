@@ -11,4 +11,5 @@ class QTagship < ApplicationRecord
 
   belongs_to :hashtag
   belongs_to :question
+  validates_associated :question
 end
