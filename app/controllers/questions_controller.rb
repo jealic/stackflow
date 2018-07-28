@@ -70,7 +70,7 @@ class QuestionsController < ApplicationController
   private
   
   def question_params
-    params.require(:question).permit(:topic,:content)
+    params.require(:question).permit(:topic,:content, :hashtag_ids => [])
   end
 
   def set_question
