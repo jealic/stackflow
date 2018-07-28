@@ -1,4 +1,4 @@
-namespace :dev  do
+namespace :dev  do 
   task fake_users: :environment do
     User.destroy_all
     user = User.new(
