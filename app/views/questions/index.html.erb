@@ -19,7 +19,6 @@
   <!----分行---->
   <div class="clearfix"></div>
   <hr>
-
   <!----問題列表---->
   <h3>Top Questions：</h3>
   <% @questions.each do |question| %>
@@ -42,9 +41,12 @@
 
       </div> 
       <div class="col-md-9 col-sm-9 col-xs-10">
-        <h4><strong><%= link_to question.topic, question_path(question) %></strong><h4>
-        <h5><%= truncate(question.content,length:100) %></h5>
-        <p>   
+        <h4><strong><%= link_to question.topic, question_path(question) %></strong></h4>
+        <% question.q_tagships.each do |tag| %>
+          <p class="label label-default"><%= tag.hashtag.name %></p>
+        <% end %><br>
+        <h5><%= truncate(question.content, length:100) %></h5>
+        <p class="time-tag">   
           Ask <%= time_ago_in_words(question.created_at) %> ago
           -by <%= link_to question.user.name,user_path(question.user) %>
           <% if current_user %>
