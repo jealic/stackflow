@@ -7,7 +7,6 @@ class QuestionsController < ApplicationController
     @question = Question.new
     @questions = Question.order(created_at: :desc).page(params[:page]).per(10)
     @hashtags = Hashtag.all
-    @hashtag = Hashtag.new
     @q_tagships = @question.q_tagships
   end
 

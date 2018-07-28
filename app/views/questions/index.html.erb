@@ -73,7 +73,7 @@
 <div class="col-md-4">
   <div class="">
     <% @hashtags.each do |hashtag| %>
-      <%= link_to hashtag.name, root_path, class: 'btn tag-btn' %>
+      <%= link_to hashtag.name, root_path(id: hashtag.id), class: 'btn tag-btn' %>
     <% end %>
   </div>
   <div class="clearfix"></div>
@@ -85,6 +85,7 @@
         <%= f.text_field :name, placeholder: "Hashtag name", class: 'form-control' %>
       </div>
       <%= f.submit 'new hashtag', class: 'btn btn-primary' %>
+      <%= link_to 'Cancel', root_path, class: 'btn btn-warning' if @hashtag.name.present? %>
     <% end %>
   </div>
   <div class="">
