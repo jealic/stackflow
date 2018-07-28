@@ -60,6 +60,14 @@ class UsersController < ApplicationController
     end
   end
 
+  def update_password
+   @user = User.find(current_user.id)
+      
+      @user.update_without_password(params[:user])
+    
+
+  end
+
 
   private
 
