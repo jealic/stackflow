@@ -28,23 +28,23 @@
     <% end %>
     </h4>
     
-    <%= render partial:"shared/favorite",locals:{question:@question} %>
+    <%= render partial:"shared/favorite", locals:{question:@question} %>
 
     <h5><%= simple_format(@question.content) %></h5>
     <span>
       <em>Ask <%= time_ago_in_words(@question.created_at) %> ago</em>
-      -by <%= link_to @question.user.name,user_path(@question.user) %>
+      -by <%= link_to @question.user.name, user_path(@question.user) %>
     </span>
     <div class="clearfix"></div>
     <hr>
     <!----回答留言---->
-    <%= form_for [@question,@answer] do |f| %>
+    <%= form_for [@question, @answer] do |f| %>
       <div class="form-group">
-        <%= f.text_area :content, placeholder:"What's your answer", class:"form-control",rows:"4" %>
+        <%= f.text_area :content, placeholder:"What's your answer", class: "form-control", rows:"4" %>
       </div>
       <div class="form-group">
-        <%= f.submit "Answer" ,class:"btn btn-primary"  %>
-        <%= f.button "Cancel",type: :reset , class:"btn btn-danger" %>
+        <%= f.submit "Answer", class:"btn btn-primary"  %>
+        <%= f.button "Cancel", type: :reset, class:"btn btn-danger" %>
       </div>
     <% end %>
     <!----回答留言---->
@@ -52,7 +52,7 @@
     <% @answers.each do |answer| %>
       <div class="panel panel-success">
         <div class="panel-heading">
-          <h3 class="panel-title"><%= link_to answer.user.name , user_path(answer.user),style:"text-decoration:none;"%></h3>
+          <h3 class="panel-title"><%= link_to answer.user.name, user_path(answer.user), style:"text-decoration:none;" %></h3>
         </div>  
 
         <div class="panel-body">
@@ -74,7 +74,7 @@
             
             <em><%= time_ago_in_words(answer.created_at)%> ago </em>
             <% if answer.user == current_user || current_user.admin? %> 
-             <%= link_to "Delete", question_answer_path(@question,answer),method: :delete, data: {confirm: "Are You Sure to delete the answer ?"} , class:"label label-danger" %>
+             <%= link_to "Delete", question_answer_path(@question, answer), method: :delete, data: {confirm: "Are You Sure to delete the answer ?"}, class:"label label-danger" %>
             <% end %>
           </span>
         </div>
@@ -83,6 +83,6 @@
     <div class="float-right">
       <%= paginate @answers %>
     </div>
-    <%= link_to "Back",root_path,class:"btn btn-primary",style:"margin-bottom:20px;"  %>
+    <%= link_to "Back", root_path, class: "btn btn-primary", style: "margin-bottom:20px;" %>
 
 </div>

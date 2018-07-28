@@ -6,7 +6,7 @@
 <div class="col-md-4">
   <div class="">
     <h4>Click to Search or Edit</h4>
-    <%= link_to 'All',root_path, class: "btn tag-btn" %>
+    <%= link_to 'All', root_path, class: "btn tag-btn" %>
     <% @hashtags.each do |hashtag| %>
       <% if hashtag.name == @hashtag.name %>
         <%= link_to hashtag.name, hashtag_path(hashtag), class: 'btn tag-btn-active' %>

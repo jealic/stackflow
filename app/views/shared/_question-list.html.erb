@@ -2,7 +2,7 @@
   <%= form_for @question do |f| %>
     <div class="form-group">
       <%= f.label :topic, "Title:" %>
-      <%= f.text_field :topic, placeholder:"title",class:"form-control" %>
+      <%= f.text_field :topic, placeholder:"title", class:"form-control" %>
     </div>
 
     <div class="form-group">
@@ -10,13 +10,13 @@
       <%= f.text_area :content, placeholder:"What's on your mind ?", class:"form-control", rows:"5"%>
     </div>
 
-    <div class="form-group">
+    <div class="form-group checkbox-list">
       <%= f.label :hashtag, "Choose a hashtag:" %><br>
       <%= f.collection_check_boxes :hashtag_ids, Hashtag.all, :id, :name, {prompt: true}%>
     </div>
 
     <div class="question-submit">
-      <%= f.submit "Ask Question",class:"btn btn-success" %>
+      <%= f.submit "Ask Question", class:"btn btn-success" %>
     </div>
   <% end %>
 
@@ -40,7 +40,7 @@
             <p>answers</p>
           </div>
         </div>
-        <%= render partial:"shared/favorite",locals:{question:question} %>   
+        <%= render partial:"shared/favorite", locals:{question:question} %>   
         
 
       </div> 
@@ -54,10 +54,10 @@
         <h5><%= truncate(question.content, length:100) %></h5>
         <p class="time-tag">   
           Ask <%= time_ago_in_words(question.created_at) %> ago
-          -by <%= link_to question.user.name,user_path(question.user) %>
+          -by <%= link_to question.user.name, user_path(question.user) %>
           <% if current_user %>
             <% if question.user == current_user || current_user.admin?%>
-              <%= link_to "delete",question_path(question),method: :delete, data:{confirm:"Are you sure to delete the question?"} ,class:"label label-danger"%>
+              <%= link_to "delete", question_path(question), method: :delete, data:{confirm:"Are you sure to delete the question?"} , class:"label label-danger"%>
             <% end %>
           <% end %>
         </p> 
