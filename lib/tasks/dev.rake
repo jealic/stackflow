@@ -72,20 +72,25 @@ namespace :dev  do
           user_id: User.all.ids.sample
           )
       end
-    end
+    end 
     
     puts "Have created #{Favorite.count} favorites for users."
     ###### 無法寫入favorites_count 而不能進行 fake #######
   end
 
-  task fake_q_tagships: :environment do
+  task fake_q_tagships: :environment do 
+    QTagship.destroy_all
     Question.all.each do |question|
-      question.q_tagships.create!(
-        hashtag_id: Hashtag.all.ids.sample
-      )
+      rand(1..3).times do |i|
+        question.q_tagships.create(
+          hashtag_id: Hashtag.all.sample.id
+          
+        ) 
+      end
     end
-    puts "all questions have hashtags"
+    puts "each question has one to three hashtags"
   end
+
 
   # 快速一個指令重建
   task rebuild: [
