@@ -4,12 +4,15 @@
     <div class="form-group">
       <%= f.label :topic, "Title" %>
       <%= f.text_field :topic, placeholder:"title",class:"form-control" %>
-      <%= f.association :hashtags, as: :check_boxes, collection: @hashtags, input_html: { multiple: true} %>
     </div>
 
     <div class="form-group">
       <%= f.label :content, "Content" %>
       <%= f.text_area :content, placeholder:"What's on your mind ?", class:"form-control", rows:"5"%>
+    </div>
+
+    <div class="form-group">
+       <%= f.collection_check_boxes :q_tagship, :hashtag_ids, Hashtag.all, :id, :name, {prompt: true}, {class: "form-control"}%>
     </div>
     
     <div class="question-submit">

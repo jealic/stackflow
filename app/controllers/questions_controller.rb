@@ -20,6 +20,7 @@ class QuestionsController < ApplicationController
       flash[:alert] = "question was failed to created, content can't be blank"
       redirect_to questions_path
     end
+
   end
 
   def destroy
