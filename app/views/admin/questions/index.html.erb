@@ -22,7 +22,7 @@
     </div>
     
     <div class="question-submit">
-      <%= f.submit "Ask Question",class:"btn btn-success" %>
+      <%= f.submit "Ask Question", class:"btn btn-success" %>
     </div>
   <% end %>
 
@@ -52,11 +52,11 @@
 
       </div>
       <div class="col-md-9 col-sm-9 col-xs-10">
-        <h4><strong><%= link_to question.topic,logger_question_path(question) %></strong><h4>
-        <h5><%= truncate(question.content,length:100) %></h5>
+        <h4><strong><%= link_to question.topic,logger_question_path(question) %></strong></h4>
+        <h5><%= truncate(question.content, length:100) %></h5>
         <p>   
           Ask <%= time_ago_in_words(question.created_at) %> ago
-          -by <%= link_to question.user.name,user_path(question.user) %>
+          -by <%= link_to question.user.name, user_path(question.user) %>
         </p>
       </div> 
     </div>
