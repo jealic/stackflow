@@ -60,11 +60,11 @@
               <%= link_to "delete",question_path(question),method: :delete, data:{confirm:"Are you sure to delete the question?"} ,class:"label label-danger"%>
             <% end %>
           <% end %>
-        </p> 
+        </p>
       </div> 
     </div>
     
-  <% end %>
+  <% end %> 
   
   <div class="text-center">
     <%= paginate @questions %>
@@ -73,8 +73,12 @@
 </div>
 <!-- 以下放 hashtags  -->
 <div class="col-md-4">
-  <%= link_to 'All',root_path,class:"btn tag-btn-active" %>
+  <%= link_to 'All',root_path,class:"btn tag-btn" %>
   <% @hashtags.each do |hashtag| %>
-    <%= link_to hashtag.name, hashtag_path(hashtag), class: 'btn tag-btn' %>
+    <% if hashtag.name == @hashtag.name %>
+      <%= link_to hashtag.name, hashtag_path(hashtag), class: 'btn tag-btn-active' %>
+    <% else %>
+      <%= link_to hashtag.name, hashtag_path(hashtag), class: 'btn tag-btn' %>
+    <% end %>
   <% end %>
 </div>
