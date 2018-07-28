@@ -1,101 +1,54 @@
-<div class="col-md-8">
-  <!----問題表格---->
-  <%= form_for @question do |f| %>
-    <div class="form-group">
-      <%= f.label :topic, "Title" %>
-      <%= f.text_field :topic, placeholder:"title",class:"form-control" %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :content, "Content" %>
-      <%= f.text_area :content, placeholder:"What's on your mind ?", class:"form-control", rows:"5"%>
-    </div>
-
-    <div class="form-group">
-       <%= f.collection_check_boxes :hashtag_ids, Hashtag.all, :id, :name, {prompt: true}%>
-    </div>
-    
-    <div class="question-submit">
-      <%= f.submit "Ask Question",class:"btn btn-success" %>
-    </div>
-  <% end %>
-
-  <!----分行---->
-  <div class="clearfix"></div>
-  <hr>
-  <!----問題列表---->
-  <h3>Top Questions：</h3>
-  <% @questions.each do |question| %>
-    
-    <div class="row question-list">
-      <div class="col-md-3 col-sm-3 col-xs-2">
-        <div class="question-data">
-          
-          <div class="data-grid text-center">
-            <div><%= question.upvotes.count %></div>
-            <p>upvotes</p>
-          </div>
-          <div class="data-grid text-center">
-            <div><%= question.answers.count %></div>
-            <p>answers</p>
-          </div>
-        </div>
-        <%= render partial:"shared/favorite",locals:{question:question} %>   
-        
-
-      </div> 
-      <div class="col-md-9 col-sm-9 col-xs-10">
-        <h4><strong><%= link_to question.topic, question_path(question) %></strong></h4>
-        <% question.q_tagships.each do |tag| %>
-          <%= link_to hashtag_path(tag.hashtag) do %>
-            <p class="label label-default"><%= tag.hashtag.name %></p>
-          <% end %>
-        <% end %>
-        <h5><%= truncate(question.content, length:100) %></h5>
-        <p class="time-tag">   
-          Ask <%= time_ago_in_words(question.created_at) %> ago
-          -by <%= link_to question.user.name,user_path(question.user) %>
-          <% if current_user %>
-            <% if question.user == current_user || current_user.admin?%>
-              <%= link_to "delete",question_path(question),method: :delete, data:{confirm:"Are you sure to delete the question?"} ,class:"label label-danger"%>
-            <% end %>
-          <% end %>
-        </p> 
-      </div> 
-    </div>
-    
-  <% end %>
+<!----問題表格---->
   
-  <div class="text-center">
-    <%= paginate @questions %>
-  </div>
-  
-</div>
+<%= render partial: "shared/question-list" %>
+
+
+ 
 <!-- 以下放 hashtags  -->
 <div class="col-md-4">
-  <div class="">
-    <%= link_to 'All',root_path,class:"btn tag-btn-active" %>
+    <div class="">
+    <h4>Click to Search by Tag:</h4>
+    <%= link_to 'All',root_path, class:"btn tag-btn-active" %>
     <% @hashtags.each do |hashtag| %>
-      <%= link_to hashtag.name, hashtag_path(hashtag), class: 'btn tag-btn' %>
+      <% if hashtag.name == @hashtag.name %>
+        <%= link_to hashtag.name, hashtag_path(hashtag), class: 'btn tag-btn-active' %>
+      <% else %>
+        <%= link_to hashtag.name, hashtag_path(hashtag), class: 'btn tag-btn' %>
+      <% end %> 
     <% end %>
   </div>
   <div class="clearfix"></div>
   <hr>
-
+  <div class="">
+    <b><%= @hashtag.errors.full_messages.to_sentence if @hashtag.errors.any? %></b>
+  </div>
   <div class="form-inline">
     <%= form_for @hashtag do |f| %>
       <div class="form-group">
         <%= f.text_field :name, placeholder: "Hashtag name", class: 'form-control' %>
       </div>
-      <%= f.submit 'new hashtag', class: 'btn btn-primary' %>
-      <%= link_to 'Cancel', root_path, class: 'btn btn-warning' if @hashtag.name.present? %>
-    <% end %>
-  </div>
-  <div class="">
-    <% if @hashtag.errors.any? %>
-      <div>
-        <b><%= @hashtag.errors.full_messages.to_sentence %></b>
+      <div class="form-group">
+        <%= f.submit 'new hashtag', class: 'btn btn-primary' %>
+        <%= link_to 'Cancel', root_path, class: 'btn btn-warning' if @hashtag.name.present? %>
       </div>
     <% end %>
   </div>
+  <br>
+  <div class="edit-tag">
+    <div class="dropdown">
+      <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Choose Tag to Edit <span class="caret"></span>
+      </button>
+      
+      <ul class="dropdown-menu">
+        <% @hashtags.each do |hashtag| %>
+          <li><%= link_to hashtag.name, questions_path(id: hashtag.id), class: 'dropdown-item' %></li>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+  
+
+  
 </div>
