@@ -6,8 +6,8 @@
  
 <!-- 以下放 hashtags  -->
 <div class="col-md-4">
-    <div class="">
-    <h4>Click to Search by Tag:</h4>
+  <div class="">
+    <h4>Click to Search or Edit</h4>
     <%= link_to 'All',root_path, class:"btn tag-btn-active" %>
     <% @hashtags.each do |hashtag| %>
       <% if hashtag.name == @hashtag.name %>
@@ -17,38 +17,24 @@
       <% end %> 
     <% end %>
   </div>
-  <div class="clearfix"></div>
-  <hr>
-  <div class="">
-    <b><%= @hashtag.errors.full_messages.to_sentence if @hashtag.errors.any? %></b>
-  </div>
-  <div class="form-inline">
-    <%= form_for @hashtag do |f| %>
-      <div class="form-group">
-        <%= f.text_field :name, placeholder: "Hashtag name", class: 'form-control' %>
-      </div>
-      <div class="form-group">
-        <%= f.submit 'new hashtag', class: 'btn btn-primary' %>
-        <%= link_to 'Cancel', root_path, class: 'btn btn-warning' if @hashtag.name.present? %>
-      </div>
-    <% end %>
-  </div>
-  <br>
-  <div class="edit-tag">
-    <div class="dropdown">
-      <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Choose Tag to Edit <span class="caret"></span>
-      </button>
-      
-      <ul class="dropdown-menu">
-        <% @hashtags.each do |hashtag| %>
-          <li><%= link_to hashtag.name, questions_path(id: hashtag.id), class: 'dropdown-item' %></li>
-        <% end %>
-      </div>
 
+  <% if user_signed_in? %>
+    <div class="clearfix"></div>
+    <hr>
+    
+
+    <div class="">
+      <b><%= @hashtag.errors.full_messages.to_sentence if @hashtag.errors.any? %></b>
     </div>
-  </div>
-  
 
-  
+    <div class="form-inline">
+      <%= form_for @hashtag do |f| %>
+        <div class="form-group">
+          <%= f.text_field :name, placeholder: "Hashtag name", class: 'form-control' %>
+        </div>
+        <%= f.submit 'add tag', class: 'btn btn-info' %>
+      <% end %>
+    </div>
+  <% end %>
+
 </div>
