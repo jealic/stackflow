@@ -79,5 +79,10 @@ class User < ApplicationRecord
     user.save!  
     return user
   end 
+
+  def self.create_with_password
+    generated_password = "123456"
+    self.create(password: generated_password, password_confirmation: generated_password)
+  end
   
 end
