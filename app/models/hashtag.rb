@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: hashtags
+#
+#  id         :integer          not null, primary key
+#  name       :string           not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class Hashtag < ApplicationRecord
   #table name: hashtags
   #

@@ -12,7 +12,7 @@
         <%= link_to "Stackoverflow", root_path, class: "navbar-brand" %>
         <% if current_user %>
           <% if current_user.admin? %>
-            <%= link_to "Admin Access",admin_root_path, class: "navbar-brand" %>
+            <%= link_to "Admin Access", admin_root_path, class: "navbar-brand" %>
           <% end %>
         <% end %>
     </div>
@@ -22,6 +22,9 @@
       <ul class="pull-right text-right nav navbar-nav">
         <% if current_user %>
           <li><p class="navbar-text">Hi, <%= link_to current_user.email, user_path(current_user) %></p></li>
+          <% if current_user.admin? %>
+            <li><%= link_to '一鍵更改密碼', resetpwd_users_path, method: :post %></li>
+          <% end %>
           <li><%= link_to 'Member list', users_path %></li>
           <li><%= link_to 'Favorite',favoriteboard_user_path(current_user) %></li>
           <li><%= link_to('登出', destroy_user_session_path, method: :delete) %></li>

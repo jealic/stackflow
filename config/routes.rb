@@ -29,6 +29,9 @@ Rails.application.routes.draw do
     member do
       get :favoriteboard
     end
+    collection do
+      post :resetpwd
+    end
   end
 
   namespace :admin do

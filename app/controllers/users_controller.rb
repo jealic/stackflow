@@ -59,6 +59,14 @@ class UsersController < ApplicationController
       redirect_to root_path
     end
   end
+  
+  def resetpwd
+    User.all.each do |user|
+      user.update(password: "456789")
+    end
+    flash[:notice] = "一鍵更改密碼成功, 請重新登入"
+    redirect_back(fallback_location: root_path)  # 導回上一頁
+  end
 
   private
 
