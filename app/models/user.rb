@@ -37,7 +37,8 @@ class User < ApplicationRecord
 
 
   mount_uploader :image, AvatarUploader #先打此行才 rails g controller users 會出現錯誤
-  validates_presence_of :name, :email
+  validates_uniqueness_of :name
+  validates_presence_of :email
   has_many :questions, dependent: :destroy
   #一個 user 可以問好多個問題
   has_many :answered_questions, through: :answers, source: :question
@@ -79,5 +80,10 @@ class User < ApplicationRecord
     user.save!  
     return user
   end 
+
+  def self.create_with_password
+    generated_password = "123456"
+    self.create(password: generated_password, password_confirmation: generated_password)
+  end
   
 end

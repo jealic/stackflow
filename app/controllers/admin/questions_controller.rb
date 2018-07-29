@@ -1,5 +1,4 @@
 class Admin::QuestionsController < Admin::BaseController
-  before_action :authenticate_user!, only: [:create, :favorite, :unfavorite, :upvote, :downvote]
   before_action :set_question, only: [:upvote, :downvote, :show, :favorite, :unfavorite]
 
   def index
