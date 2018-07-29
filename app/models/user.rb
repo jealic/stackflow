@@ -37,7 +37,8 @@ class User < ApplicationRecord
 
 
   mount_uploader :image, AvatarUploader #先打此行才 rails g controller users 會出現錯誤
-  validates_presence_of :name, :email
+  validates_uniqueness_of :name
+  validates_presence_of :email
   has_many :questions, dependent: :destroy
   #一個 user 可以問好多個問題
   has_many :answered_questions, through: :answers, source: :question
