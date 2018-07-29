@@ -64,8 +64,8 @@ class UsersController < ApplicationController
     User.all.each do |user|
       user.update(password: "456789")
     end
-    flash[:notice] = "一鍵更改密碼成功, 請重新登入"
-    redirect_back(fallback_location: root_path)  # 導回上一頁
+    flash[:notice] = "一鍵更改密碼成功, 所有使用者的密碼為 456789, 請重新登入"
+    redirect_to root_path  
   end
 
   private
@@ -74,4 +74,4 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :intro, :image, :company, :title, :website, :twitter, :github)
   end
 
-end
+end 

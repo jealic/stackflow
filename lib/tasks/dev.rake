@@ -11,7 +11,6 @@ namespace :dev  do
         website: "test.website.com",
         twitter: "test.twitter",
         github: "test.github",
-        role: "admin"
      )
     user.save!
     puts "帳：test@test.com"
@@ -102,6 +101,7 @@ namespace :dev  do
     :fake_questions,
     :fake_answers,
     :fake_favorites
+    :fake_q_tagships
     ]
 
 end
