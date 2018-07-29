@@ -1,17 +1,19 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-4 col-md-offset-4">
-      <h2>Log in</h2>
+<div class="col-md-4 col-md-offset-4">
+  <div class="panel panel-primary devise-panel">
+    <div class="panel-heading panel-title">
+      <h4 class="text-center">Log in</h4>
+    </div>
 
+    <div class="panel-body">
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <div class="field">
           <%= f.label :email %><br />
-          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email",class:"form-control" %>
         </div>
 
         <div class="field">
           <%= f.label :password %><br />
-          <%= f.password_field :password, autocomplete: "off" %>
+          <%= f.password_field :password, autocomplete: "off",class:"form-control" %>
         </div>
 
         <% if devise_mapping.rememberable? -%>
@@ -22,11 +24,20 @@
         <% end -%>
 
         <div class="actions">
-          <%= f.submit "Log in" %>
+          <%= f.submit "Log in",class:"btn btn-primary" %> 
+          <%= link_to "Sign up", new_registration_path(resource_name),class:"btn btn-default" %>
+          <%- resource_class.omniauth_providers.each do |provider| %>
+          <%= link_to omniauth_authorize_path(resource_name, provider), class: "btn btn-dark" do %>
+             <i class="fab fa-github fa-2x"></i> Sign in with <%= OmniAuth::Utils.camelize(provider)  %>
+            <% end %><br />
+          <% end -%>
+        </div>
+        
+        <div class="field text-center"></div>
+          <%= link_to "Forgot your password?", new_password_path(resource_name),class:"btn btn-danger" %>
         </div>
       <% end %>
-
-      <%= render "devise/shared/links" %>
     </div>
   </div>
-</div> 
+</div>
+  
