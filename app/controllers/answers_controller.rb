@@ -15,10 +15,10 @@ class AnswersController < ApplicationController
     end
   end
 
-  def destroy
+  def destroy 
     @question = Question.find(params[:question_id])
     @answer = @question.answers.find(params[:id]) 
-    if current_user==@answer.user
+    if current_user ||current_user.admin? 
       @answer.destroy
       flash[:notice]="successfully deleted"
       redirect_to question_path(@question)
