@@ -9,7 +9,7 @@ Devise.setup do |config|
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
   # config.secret_key = 'd2ac733b212a0239058110afaee5ba68da000fd0927c071eccbcd0ffae2523a1a2c11999722267d8f9be566fb08ef475e98f5a4b459d195a301f2d29d1aeed33'
-  github_config = Rails.application.config_for(:application)
+  github_config = Rails.application.config_for(:github)
 
   config.omniauth :github, 
   github_config["app_id"], 
