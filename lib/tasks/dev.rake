@@ -1,6 +1,6 @@
 namespace :dev  do 
   task fake_users: :environment do
-    User.destroy_all
+    #User.destroy_all
     user = User.new(
         email: "test@test.com",
         password: "123456",
@@ -11,8 +11,7 @@ namespace :dev  do
         website: "test.website.com",
         twitter: "test.twitter",
         github: "test.github",
-        role:'admin'
-      )
+     )
     user.save!
     puts "帳：test@test.com"
     puts "密：123456"
