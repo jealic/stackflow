@@ -23,3 +23,5 @@
 .byebug_history
 
 /config/github.yml
+# Ignore application configuration
+/config/application.yml
