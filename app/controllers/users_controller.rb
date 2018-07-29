@@ -74,4 +74,4 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :intro, :image, :company, :title, :website, :twitter, :github)
   end
 
-end
+end 

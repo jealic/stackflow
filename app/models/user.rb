@@ -86,4 +86,4 @@ class User < ApplicationRecord
     self.create(password: generated_password, password_confirmation: generated_password)
   end
   
-end
+end  
