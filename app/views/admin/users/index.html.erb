@@ -44,7 +44,7 @@
             </h4>    
             <%= link_to 'Edit Info', edit_user_path(user), class: 'btn btn-info' %>
             <%= link_to "Destroy", user_path(user), method: :delete, data: {confirm:"Are you sure to delete ?"}, class:"btn btn-danger" %><br>
-            <%= link_to 'reset password' %>
+            <%= link_to 'reset password', resetpwd_admin_user_path(user), method: :post %>
           </div>
         </div> 
       <% end %> 

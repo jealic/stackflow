@@ -36,6 +36,11 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root 'users#index'
+    resources :users, only: [:index] do
+      member do
+        post :resetpwd
+      end
+    end
   end
 end
  
