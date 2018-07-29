@@ -21,3 +21,12 @@ hashtag_list.each do |hashtag|
   Hashtag.create(name: hashtag[:name])
   puts "Hashtag #{hashtag[:name]} was generated."
 end
+
+User.create(
+  name: 'Admin',
+  email: 'admin@example.com',
+  password: '123456',
+  role: 'admin',
+  intro: "I'm Adam",
+  )
+puts "Default admin created!"

@@ -1,29 +1,22 @@
-<div class="container">
-  <div class="row">
-    
-    <h1>User List</h1>
+<div class="col-md-8 col-md-offset-2">
+  <h1>User List</h1>
+  <div class="clearfix"></div>
+  <hr>
+  
+    <table class="table">
+      <thead>
+        <th>#</th>
+        <th>Name</th>
+        <th>email</th>
+      </thead>
 
-    
-      <table class="table">
-        <thead>
-          <th>#</th>
-          <th>Name</th>
-          <th>email</th>
-          <th> </th>
-        </thead>
+      <% @users.each do |user| %>
+      <tbody>
+        <th><%= user.id %></th>
+        <td><%= link_to user.name, user_path(user) %></td>
+        <td><%= user.email %></td>
+      </tbody>
+      <% end %>
 
-        <% @users.each do |user| %>
-        <tbody>
-          <th><%= user.id %></th>
-          <td><%= link_to user.name, user_path(user) %></td>
-          <td><%= user.email %></td>
-          <td><%= link_to 'reset password' %></td>
-        </tbody>
-        <% end %>
-
-      </table>
-    
-
-    
+    </table>
   </div>
-</div>
