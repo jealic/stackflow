@@ -100,7 +100,7 @@ namespace :dev  do
     :fake_users,
     :fake_questions,
     :fake_answers,
-    :fake_favorites
+    :fake_favorites,
     :fake_q_tagships
     ]
 
