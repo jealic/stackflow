@@ -19,12 +19,16 @@ Devise.setup do |config|
 
   #local developmenmt時候用這個
   if Rails.env.development?
-    callback_url: "http://localhost:3000/users/auth/github/callback"
+    github_config ={
+      callback_url: "http://localhost:3000/users/auth/github/callback"
+    }
   end
 
   #heroku production時候用這個
   if Rails.env.production? 
-    callback_url: "https://alphacamp-stackoverflow.herokuapp.com/users/auth/github/callback"
+    github_config ={
+      callback_url: "https://alphacamp-stackoverflow.herokuapp.com/users/auth/github/callback"
+    }
   end
 
   # ==> Controller configuration
