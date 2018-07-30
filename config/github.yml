@@ -3,6 +3,9 @@ production:
   secret: <%= ENV["secret"] %>
 
 
+development:
+  app_id: <%= ENV["app_id"] %>
+  secret: <%= ENV["secret"] %>
   
 
    
