@@ -18,17 +18,9 @@ Devise.setup do |config|
   info_fields: "email, name",
 
   #local developmenmt時候用這個
-  if Rails.env.development?
-    github_config ={
-      callback_url: "http://localhost:3000/users/auth/github/callback"
-    },
-  
-
+  callback_url: "http://localhost:3000/users/auth/github/callback" if Rails.env.development 
   #heroku production時候用這個
-  if Rails.env.production? 
-    github_config ={
-      callback_url: "https://alphacamp-stackoverflow.herokuapp.com/users/auth/github/callback"
-    },
+  callback_url: "https://alphacamp-stackoverflow.herokuapp.com/users/auth/github/callback" if Rails.env.production? 
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
