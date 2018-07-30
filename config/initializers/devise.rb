@@ -23,7 +23,8 @@ Devise.setup do |config|
   elsif Rails.env.production?
   #heroku production時候用這個
   callback_url = "https://alphacamp-stackoverflow.herokuapp.com/users/auth/github/callback"
-  end 
+
+  
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
   # config.parent_controller = 'DeviseController'
