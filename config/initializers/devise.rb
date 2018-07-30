@@ -18,7 +18,7 @@ Devise.setup do |config|
   info_fields: "email, name",
 
   #local developmenmt時候用這個
-  callback_url: "http://localhost:3000/users/auth/github/callback" if Rails.env.development 
+  callback_url: "http://localhost:3000/users/auth/github/callback" if Rails.env.development?
   #heroku production時候用這個
   callback_url: "https://alphacamp-stackoverflow.herokuapp.com/users/auth/github/callback" if Rails.env.production? 
 
