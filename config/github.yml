@@ -1,5 +1,6 @@
-app_id: <%= ENV["app_id"] %>
-secret: <%= ENV["secret"] %>
+priduction:
+  app_id: <%= ENV["app_id"] %>
+  secret: <%= ENV["secret"] %>
 
 
 development:
